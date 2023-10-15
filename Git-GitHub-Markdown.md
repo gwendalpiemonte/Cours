@@ -97,4 +97,52 @@ git pull origin <branch-name>
 # Merge a branch into another
 git merge <branch-name>
 ```
+   
+# GitHub
+GitHub est une plateforme et un service cloud pour les logiciels de
+développement et contrôle de version à l'aide de Git, permettant aux développeurs de stocker et gérer leur code.
 
+GitHub est un service d'hébergement de repository Git basé sur le Web. Il fournit tous les
+fonctionnalités de Git, ainsi que quelques fonctionnalités supplémentaires.
+
+Il s'agit du service d'hébergement de repository Git le plus populaire, avec plus de 372
+millions de repository (janvier 2023), foyer de nombreux projets open source et un endroit où de nombreuses entreprises hébergent leurs repository privés.
+
+## Social platform
+GitHub est une plateforme **sociale**. Il permet de **follow** d'autres utilisateurs et de **star** des 
+repository. Il permet également de **fork** des repository, ce qui signifie créer un
+copie d'un repository dans votre propre compte.
+
+## Users and organizations
+Les repository peuvent appartenir à un utilisateur ou à une organisation.
+Une organisation peut avoir plusieurs membres et les repository peuvent être partagés
+entre les membres. C'est une bonne pratique de créer une organisation pour un
+projet sur lequel plusieurs personnes travailleront.
+
+## Issues, pull requests and forks
+GitHub fournit également un wiki pour chaque repository, un **project board** pour gérer des
+tâches, un outil de suivi d'**issue** pour signaler les bugs et un système de **pull request** à **review**
+et **merge** les modifications.
+
+Contribuer à un projet hébergé sur GitHub se fait en **forkant** le
+repository, apporter des modifications et ouvrir une **pull request** pour merge le
+repository dans le repository d'origine.
+
+Le forking n'est nécessaire que si vous n'êtes pas membre du repository ou
+de l'organisation.
+
+Une fois qu'une branche est prête à être merge avec la branche cible, c'est une bonne
+pratique d'ouvrir une pull request (ou une **merge request** sur GitLab). Une pull
+request est une demande de merge d’une branche dans une autre. C'est une façon de discuter
+les modifications avant de les fusionner.
+
+L’examen d’une pull request se fait en **commentant** les modifications. Le
+le réviseur peut demander que des modifications soient apportées avant de merge la branche ou peut
+approuver les modifications.
+
+Une fois la pull request approuvée, la branche peut être merge dans la
+branche cible.
+
+Par défaut, GitHub ne supprime pas la branche une fois qu'elle est fusionnée. Il est possible de
+l'activer par défaut dans les paramètres de votre repository ou le supprimer
+manuellement. Cela évite de cumuler des branches obsolètes dans votre repository.
