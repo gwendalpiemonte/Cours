@@ -56,7 +56,14 @@ Un type d’entité est aussi souvent appelé simplement "entité".
 - Sauf en cas d’obligation, par exemple pour des questions de performance, **on ne stocke jamais d’attributs qui peuvent être dérivés/calculés**
   - C’est une forme de redondance et est **très compliqué et couteux** à maintenir à jour (cohérent)
 
-
+## Identifiant (ou clé)
+- **Un identifiant est tout sous-ensemble minimal** des attributs d’un type d’entité permettant d’**identifier univoquement chaque tuple**
+- Un type d’entité peut avoir plusieurs clés possibles, dans ce cas onparle de **clés candidates**
+- Celle retenue sera la **clé primaire** (il ne peut y en avoir qu’une)
+- Une bonne clé primaire doit:
+  - Être absolument **univoque**
+  - Ne, si possible, **pas voir sa valeur être modifiée**
+  - Avoir une **taille de stockage la plus petite possible**
 
 
 
