@@ -229,7 +229,7 @@ Il peut parfois être difficile de savoir quelle E/S utiliser pour quel cas d'ut
 Voici un arbre de décision simple pour vous aider à choisir la bonne IO pour la bonne utilisation
 cas:
 
-![Arbre de décision pour choisir la bonne IO pour le bon cas d'utilisation](./images/when-to-use-which-io.png)
+![Arbre de décision pour choisir la bonne IO pour le bon cas d'utilisation](./when-to-use-which-io.png)
 
 
 
