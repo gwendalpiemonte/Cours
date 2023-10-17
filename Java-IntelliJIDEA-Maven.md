@@ -269,7 +269,7 @@ mvn compile
 mvn package
 ```
 
-Multiple phases can be executed in a single command:
+Plusieurs phases peuvent être exécutées en une seule commande :
 
 ```sh
 # Delete the compiled classes, compile the source code and package the application
