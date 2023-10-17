@@ -28,6 +28,35 @@
 
 Chaque type d’entité a :
 
-![](typeentite.PNG)
+![image](\typeentite.PNG)
 
 Un type d’entité est aussi souvent appelé simplement "entité".
+
+## Attribut
+
+- Un **attribut** est une propriété caractéristique d’un type d’entité
+  - Par exemple le titre d’un film
+- Correspond à une **variable/attribut** en programmation
+  - Est désigné par un **identificateur** (nom)
+  - Est d’un certain **type** (domaine énumérable tel que les entiers, lesdates,…)
+- En règle générale lors de la phase de conception on ne fixe pas encore les types:
+  - Ils vont parfois dépendre du SGBD et peuvent avoir plus de contraintes (par ex min/max) que le type de base
+  - L’exception est souvent le type énuméré (enum) car on veut (et peut) la plupart du temps en connaître toutes les valeurs dès la phase de conception
+- **Monovalué** si l’attribut ne peut prendre qu’une seule valeur, par exemple une date de naissance
+  - S’il est **multivalué**, l’attribut peut prendre plusieurs valeurs (par exemple pour gérer des personnes pouvant avoir plusieurs prénoms)
+- **Simple (ou atomique)** si l’attribut ne peut pas être décomposé en plusieurs autres attributs
+  - Sinon il est **composite**, par exemple une adresse (que l’on peut décomposer en ville + NPA + rue +…)
+- **Obligatoire** s’il doit forcément avoir une valeur pour chaque tuple
+  - Sinon il est **facultatif** (souvent dit nullable car peut prendre la valeur **NULL**)
+- **Stocké**
+  - La valeur est simplement stockée dans la base de données
+- **Dérivé/calculé**
+  - Par exemple l’âge d’une personne peut être calculé à partir de sa date de naissance (qui est un attribut stocké) et de la date courante
+  - Autre exemple: si la base de données stocke des entreprises et leurs listes d’employés, le nombre d’employés par entreprise peut être déduit
+- Sauf en cas d’obligation, par exemple pour des questions de performance, **on ne stocke jamais d’attributs qui peuvent être dérivés/calculés**
+  - C’est une forme de redondance et est **très compliqué et couteux** à maintenir à jour (cohérent)
+
+
+
+
+
