@@ -27,10 +27,7 @@
 ## Type d’Entité
 
 Chaque type d’entité a :
-- Un nom
-- En général plusieurs attributs
-- Un identifiant
-- Il doit permettre d’identifier univoquement chaque valeur (tuple)
-- Il peut être composé d’un ou de plusieurs attributs
-- Il est toujours, par convention, souligné
-- Un type d’entité est aussi souvent appelé simplement "entité "
+
+![](typeentite.PNG)
+
+Un type d’entité est aussi souvent appelé simplement "entité".
