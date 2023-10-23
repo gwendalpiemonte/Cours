@@ -451,13 +451,13 @@ VALUES ('Sciamma', 'Céline', '1978-11-12') RETURNING id;
     la valeur modifié/supprimée
 
 ## Intégrité référentielle: actions possibles <a name="22"></a>
-- NO ACTION (option par défaut) ou RESTRICT
+- **NO ACTION (option par défaut) ou RESTRICT**
   - Interdit la modification/suppression de la valeur référencée référencée, cela générera une erreur au niveau du SGBD
-- CASCADE
+- **CASCADE**
   - Met à jour la clé étrangère (si la valeur référencée a changé) ou efface les tuples (si la valeur référencée a été supprimée)
-- SET NULL
+- **SET NULL**
   - Remplace les valeurs de la clé étrangère par NULL
-- SET DEFAULT
+- **DEFAULT**
   - Remplace les valeurs de la clé étrangère par celle définie par défautpour cet attribut
     - S’il n’y a pas de valeur par défaut définie, cela mettra NULL
 
