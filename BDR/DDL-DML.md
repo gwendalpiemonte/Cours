@@ -422,16 +422,44 @@ INSERT INTO Film VALUES ('Blade Runner', 1982, 11);
 ```
 Erreur, la valeur (11) de la clé référencée par idRéalisateur n’est pas présente dans la table Réalisateur
 
-\
 ## DELETE <a name="18"></a>
 
 ## UPDATE <a name="19"></a>
 
 ## RETURNING <a name="20"></a>
+- La clause RETURNING peut être ajoutée aux instructions INSERT, DELETE et UPDATE
+- Elle permet à ces instructions de **retourner des valeurs**
+- Le cas le plus courant est lors d’un INSERT, quand toutes les valeurs ne sont pas spécifiées dans l’instruction
+
+Exemple:
+```SQL
+INSERT INTO Réalisateur(nom, prénom, dateNaissance)
+VALUES ('Sciamma', 'Céline', '1978-11-12') RETURNING id;
+```
+
+- La valeur d’id n’est pas fournie lors de l’insertion car l’attribut est de type serial (auto-incrémenté) La clause **RETURNING** permet de connaitre la valeur que le SGBD lui a attribué (sans devoir écrire une requête supplémentaire)
 
 ## Intégrité référentielle: UPDATE/DELETE <a name="21"></a>
+- Les SGBD permettent de définir leur réaction lorsqu’une **valeur référencée est modifiée**
+
+- On peut définir séparément ce que le SGBD doit faire si la valeur change (**ON UPDATE**) ou si elle (son tuple) est supprimée (**ON DELETE**)
+
+- Les actions possibles permettent soit:
+- D’interdire toute modification: **NO ACTION ou RESTRICT**
+  - De mettre à jour automatiquement les tuples qui référencent valeur modifiée: **CASCADE, SET NULL ou SET DEFAULT**
+    Ces actions s’appliquent à tous les tuples dont la clé étrangère référence
+    la valeur modifié/supprimée
 
 ## Intégrité référentielle: actions possibles <a name="22"></a>
+- NO ACTION (option par défaut) ou RESTRICT
+  - Interdit la modification/suppression de la valeur référencée référencée, cela générera une erreur au niveau du SGBD
+- CASCADE
+  - Met à jour la clé étrangère (si la valeur référencée a changé) ou efface les tuples (si la valeur référencée a été supprimée)
+- SET NULL
+  - Remplace les valeurs de la clé étrangère par NULL
+- SET DEFAULT
+  - Remplace les valeurs de la clé étrangère par celle définie par défautpour cet attribut
+    - S’il n’y a pas de valeur par défaut définie, cela mettra NULL
 
 ## Intégrité référentielle: exemple <a name="23"></a>
 
