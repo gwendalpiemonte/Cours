@@ -8,11 +8,18 @@
 
 ## Exemple d’une bonne structure
 - Afin d’éviter les anomalies vues précédemment, il faut:
+  
 1. **Représenter séparément** les films et les réalisateurs afin que, par exemple, la suppression d’un film ne risque pas de supprimer son réalisateur
+
+<img src="/BDR/images/Separation.PNG" width="700"/>
+
 2. **Identifier univoquement** chaque élément (film, réalisateur) afin d’éviter les doublons
+
+<img src="/BDR/images/Identifier.PNG" width="700"/>
+   
 3. Lier les films et les réalisateurs **sans redondance** (un réalisateur ne doit être **stocké qu’une seule fois**, même s’il a réalisé plusieurs films)
 
-![]()
+<img src="/BDR/images/Lier.PNG" width="700"/>
 
 ## Avantages du modèle EA
 
@@ -42,7 +49,8 @@
 
 Chaque type d’entité a :
 
-![image](\typeentite.PNG)
+<img src="/BDR/images/typeentite.PNG" width="700"/>
+
 
 Un type d’entité est aussi souvent appelé simplement "entité".
 
@@ -78,6 +86,63 @@ Un type d’entité est aussi souvent appelé simplement "entité".
   - Être absolument **univoque**
   - Ne, si possible, **pas voir sa valeur être modifiée**
   - Avoir une **taille de stockage la plus petite possible**
+
+## Clé naturelle vs Clé artificielle
+- **Clé naturelle**:
+  - Ensemble, **minimal et unique**, d’attributs présents naturellement dans le type d’entité (par exemple le no AVS d’une personne)
+  - **Avantage**: pas besoin d’ajouter d’attribut
+  - **Inconvénient**: est liée à la logique métier donc pourrait être modifiée voir supprimée
+    - Peut aussi être composée de beaucoup d’attributs de types peu performants lors des jointures (par exemple plusieurs chaînes de caractères)
+
+- **Clé artificielle**:
+  - **Attribut que l’on rajoute** et qui n’est pas lié sémantiquement aux attributs naturels
+  - **Avantage**: n’est pas lié à la logique métier, donc on a le choix du type et ses valeurs ne seront pas modifiées
+  - **Inconvénient**: ne fournit aucune information métier
+
+## Choix de la clé primaire
+- L’identification des clés et le choix de la clé primaire est crucial mais pas toujours facile:
+  - titre de film est-il bien unique ?
+  - Idem pour las attributs naturels de Réalisateur, composeraient-ils une bonne clé primaire ?
+    
+<img src="/BDR/images/CelfPrimaire.PNG" width="700"/>
+
+## Type d’entité: Représentation graphique
+
+<img src="/BDR/images/TypeentiteRepGraph.PNG" width="700"/>
+
+## Association
+- Le concept d’association est lié à celui de **relation dans la théorie des ensembles**
+
+  <img src="/BDR/images/Association.PNG" width="700"/>
+
+- On a les n-uplets: {(R1, F1), (R1, F2), (R2, F3)}
+
+- En reprenant l’exemple du début du chapitre, on a :
+  - Un réalisateur peut réaliser plusieurs films
+  - Un film est réalisé par un seul réalisateur
+
+## Degré d’une association
+- Le degré d’une association se dit aussi **arité**
+- Il est déterminé par le nombre de types d’entité (TE) impliqués dans l’association
+  - S’il y en a 2, comme entre Film et Réalisateur, l’association est **binaire**
+  - S’il y en a 3, l’association est **ternaire**
+  - S’il y a n TE, l’association est **n-aire**
+    
+<img src="/BDR/images/DegreAssiciation.PNG" width="700"/>
+
+- **Un nom est donné à chaque association**, ici "a réalisé"
+
+## Cardinalités
+
+Cardinalités
+- La cardinalité (ou multiplicité) est une paire [min, max] de valeurs telle que:
+  - min (cardinalité minimale) est le nombre minimal de fois qu’un TE peut intervenir dans l’association
+    - Vaut en général 0 ou 1
+  - max (cardinalité maximale) est le nombre maximal de fois qu’un TE peut intervenir dans l’association
+    - Vaut en général 1 ou * (un nombre quelconque de fois)
+
+<img src="/BDR/images/Cardinalite.PNG" width="700"/>
+    - Si min = max, on peut ne mettre la valeur qu’une seule fois
 
 
 
