@@ -293,7 +293,7 @@ Un type d’entité est aussi souvent appelé simplement "entité".
   - N’est pas structurellement différente d’une association simple
   - En modélisation EA cela peut donc être représenté soit par une agrégation, soit par une association
 - **Composition**
- - Est identique à l’agréation mais avec suppression automatique des contenus
+  - Est identique à l’agréation mais avec suppression automatique des contenus
   - Cela correspond à un lien fort-faible, dans l’exemple précédent supprimer un cinéma implique d’en supprimer ses salles
 
 ## Associations redondantes <a name="23"></a>
