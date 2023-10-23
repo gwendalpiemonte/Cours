@@ -104,7 +104,7 @@ Un type d’entité est aussi souvent appelé simplement "entité".
   - titre de film est-il bien unique ?
   - Idem pour las attributs naturels de Réalisateur, composeraient-ils une bonne clé primaire ?
     
-<img src="/BDR/images/ClefPrimaire.PNG" width="700"/>
+<img src="/BDR/images/CelfPrimaire.PNG" width="700"/>
 
 ## Type d’entité: Représentation graphique
 
