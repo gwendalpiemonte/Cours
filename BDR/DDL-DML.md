@@ -191,24 +191,238 @@ CREATE TYPE typeLecon AS ENUM ('cours', 'labo');
   - Intégrité référentielle
 
 ## Contraintes de domaine <a name="10"></a>
+-  La valeur de chaque attribut **doit appartenir à son domaine**
+- Lors de la création d’une table, cela correspond à attribuer un type à chaque attribut:
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80), -- ou typeNoms (voir ci-dessous)
+prénom varchar(80), -- ou typeNoms (voir ci-dessous)
+dateNaissance date
+);
+```
+
+- On peut créer des domaines (selon le SGBD):
+```SQL
+CREATE DOMAIN name [ AS ] data_type;
+);
+```
+
+- Par exemple:
+```SQL
+CREATE DOMAIN typeNoms varchar(80);
+);
+```
+
+- Il est possible d’ajouter des contraintes en utilisant la clause **CHECK**
+
+- **CHECK** est suivi d’une expression booléenne qui exprime la contrainte à vérifier
+
+- Exemple: Implémentation de la contrainte qui assure qu’il n’est pas possible d’insérer de réalisateur pas encore né
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80),
+prénom varchar(80),
+dateNaissance date CHECK (dateNaissance <= CURRENT_DATE)
+);
+```
+
+- Il est possible d’ajouter **CONSTRAINT name** afin de nommer la contrainte
 
 ## Contraintes de clé <a name="11"></a>
+- Rappels:
+  - Une relation peut avoir **plusieurs clés (clés candidates)**
+  - La clé retenue devient la **clé primaire**
+  - Il n’existe pas 2 tuples ayant la même valeur pour tous les attributs d’une clé
+    
+- Exemple avec définition de la clé primaire:
+```SQL
+CREATE TABLE Réalisateur (
+id serial PRIMARY KEY,
+nom varchar(80),
+prénom varchar(80),
+dateNaissance date
+);
+```
+
+- La définition de la clé primaire peut aussi être faite après l’attribut:
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80),
+prénom varchar(80),
+dateNaissance date,
+PRIMARY KEY(id)
+);
+```
+
+- Cette forme permet de nommer la contrainte:
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80),
+prénom varchar(80),
+dateNaissance date,
+CONSTRAINT PK_Réalisateur PRIMARY KEY(id)
+);
+```
+
+- Il est **recommandé de nommer les contraintes** car cela facilite leur accès et les rend parlantes
 
 ## Contraintes d’intégrité des entités <a name="12"></a>
+- **Aucune valeur de clé primaire ne peut être NULL**
+- Si une clé primaire est composée de **plusieurs attributs**, ils doivent **tous être non NULL**
+- Dès qu’une clé primaire est définie dans le SGBD tous ses attributs sont automatiquement non NULL, il n’y a donc **pas de vérification à ajouter explicitement**
 
 ## Contraintes de valeurs non NULL <a name="13"></a>
+- Permet de définir un attribut comme étant obligatoire
+
+- Par défaut, les attributs d’une table peuvent valoir NULL
+
+- Exemple complété pour que chaque réalisateur ait obligatoirement un nom, un prénom et une date de naissance:
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80) NOT NULL,
+prénom varchar(80) NOT NULL,
+dateNaissance date NOT NULL,
+CONSTRAINT PK_Réalisateur PRIMARY KEY(id)
+);
+```
 
 ## Contraintes de valeurs uniques <a name="14"></a>
+- Permet de définir qu’un attribut ne peut pas avoir 2 fois la même valeur pour tous les tuples de la relation/table
+
+- Un cas classique d’utilisation est quand une clé primaire artificielle est ajoutée alors qu’une clé naturelle existe
+  - Par exemple si une clé artificielle est ajoutée à Film, alors que titre est une clé naturelle
+```SQL
+CREATE TABLE Film (
+id serial,
+titre varchar(250) NOT NULL,
+année smallint NOT NULL,
+CONSTRAINT PK_Film PRIMARY KEY(id),
+CONSTRAINT UC_Film_titre UNIQUE(titre)
+);
+```
+
+- La contrainte UNIQUE permet de maintenir le fait que 2 films ne peuvent pas avoir le même titre
 
 ## Références: clé primaire - clé étrangère <a name="15"></a>
+<img src="/BDR/images/Tableau.PNG" width="700"/>
+
+- Dans cet exemple, chaque film **référence** un réalisateur
+- id est **la clé primaire** de Réalisateur
+- idRéalisateur est une **clé étrangère** dans Film
+  - Elle référence la **clé primaire** de Réalisateur (id)
+  - Une clé étrangère peut référencer n’importe quel ensemble d’attributs UNIQUE, mais en général chaque clé étrangère référence une clé primaire
 
 ## Contraintes d’intégrité référentielle <a name="16"></a>
+<img src="/BDR/images/Tableau.PNG" width="700"/>
 
+- Les attributs de la clé étrangère doivent avoir **les mêmes domaines (types)** que les attributs qu’ils référencent
+- La valeur de la clé étrangère d’un tuple peut valoir:
+  - Une valeur (de la clé primaire) référencée
+  - NULL dans certains cas (selon la cardinalité minimale)
+
+- Exemple:
+```SQL
+CREATE TABLE Film (
+titre varchar(250),
+année smallint NOT NULL,
+idRéalisateur integer NOT NULL,
+CONSTRAINT PK_Film PRIMARY KEY(titre),
+CONSTRAINT FK_Film_idRéalisateur FOREIGN KEY
+(idRéalisateur) REFERENCES Réalisateur(id)
+);
+```
+
+- idRéalisateur a le même domaine que id de Réalisateur, qui est **serial (donc integer)**
+- idRéalisateur est défini comme NOT NULL car il faut que tout film ait un réalisateur (cardinalité minimale de 1)
+  - Point détaillé dans le chapitre sur les transformations modèle EA -> MR
 
 # DML
 
 ## INSERT <a name="17"></a>
+- De base, **INSERT** permet d’ajouter un tuple à une table
+- Exemple: ajouter un tuple dans Réalisateur
+```SQL
+INSERT INTO Réalisateur(nom, prénom, dateNaissance)
+VALUES ('Sciamma', 'Céline', '1978-11-12');
+```
 
+- Cette forme de l’instruction INSERT **nomme les attributs** qui vont être insérés, ce qui permet:
+  - De mettre les attributs dans **n’importe quel ordre**
+  - De pouvoir **omettre les attributs** dont la valeur n’a pas besoin d’être spécifiée:
+    - Ici id car c’est un type auto-incrémenté (sa séquence détermine la prochaine valeur à utiliser)
+    - C’est le cas de tous les attributs qui ont une **valeur par défaut**
+
+
+
+- Exemple d’insertion **sans préciser le nom des attributs**:
+```SQL
+INSERT INTO Film
+VALUES ('Portrait de la jeune fille en feu', 2019, 8);
+```
+
+- L’ordre des valeurs des attributs doit être le même que celui défini lors de la création de la table
+- Pour **omettre des valeurs** par défaut (ici id), il faut l’indiquer explicitement en utilisant **DEFAULT**:
+```SQL
+INSERT INTO Réalisateur VALUES
+(DEFAULT, 'Sciamma', 'Céline', '1978-11-12');
+```
+
+- Si tous les attributs ont une valeur par défaut, il est possible d’insérer un tuple sans donner la moindre valeur:
+```SQL
+INSERT INTO ... DEFAULT VALUES;
+```
+
+- L’instruction INSERT nécessite, de la part du SGBD, de **vérifier toutes les contraintes vues précédemment**, soit:
+
+\
+Contraintes de **domaine**
+```SQL
+INSERT INTO Film VALUES ('Blade Runner', TRUE, 1);
+```
+Erreur, TRUE n’est pas dans le domaine de l'attribut année (smallint)
+
+\
+Contraintes de **clé** 
+```SQL
+INSERT INTO Film VALUES ('Alien', 1979, 1);
+```
+Erreur, il y a déjà un tuple avec 'Alien' comme clé
+
+\
+Contraintes d’intégrité des **entités**
+```SQL
+INSERT INTO Film VALUES (NULL, 1979, 1);
+```
+Erreur, la clé primaire ne peut pas valoir **NULL**
+
+\
+Contraintes de valeurs **non NULL**
+```SQL
+INSERT INTO Film VALUES ('Blade Runner', NULL, 1)
+```
+Erreur, l’attribut année est défini NOT NULL
+
+\
+Contraintes de **valeurs uniques**
+  En reprenant la définition de Film d'avant:
+```SQL
+INSERT INTO Film VALUES (DEFAULT, 'Alien', 1979);
+```
+Erreur, il y a déjà un tuple avec 'Alien' comme valeur pour titre qui est défini UNIQUE
+
+\
+Contraintes d’**intégrité référentielle**
+```SQL
+INSERT INTO Film VALUES ('Blade Runner', 1982, 11);
+```
+Erreur, la valeur (11) de la clé référencée par idRéalisateur n’est pas présente dans la table Réalisateur
+
+\
 ## DELETE <a name="18"></a>
 
 ## UPDATE <a name="19"></a>
