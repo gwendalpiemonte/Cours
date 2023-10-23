@@ -32,25 +32,163 @@ DML:
 8. [Modification de la structure d’une BDD](#24)
 
 
+# SQL
+<img src="/BDR/images/SQLLanguage.PNG" width="700"/>
+
 # DDL
 
 ## Création: base de données <a name="1"></a>
+Pour créer une base de données:
+```SQL
+CREATE DATABASE name;
+```
+
+Pour la supprimer:
+```SQL
+DROP DATABASE [ IF EXISTS ] name;
+```
+
+IF EXISTS permet d’éviter une erreur si la base de données
+appellée name n’existe pas
+- À noter que les instructions présentées dans ce chapitre le sont avec le minimum d’options habituellement utilisées, les versions complètes pour PostgreSQL sont trouvables [ici](https://www.postgresql.org/docs/15/index.html)
 
 ## Création: schéma <a name="2"></a>
+- Les schémas permettent de structurer les grandes bases de données et/ou de gérer les droits plus finement
+- Un schéma **public** est créé par défaut par PostgreSQL
+
+Pour créer un schéma:
+```SQL
+CREATE SCHEMA schema_name;
+```
+Pour supprimer un schéma:
+```SQL
+DROP SCHEMA [ IF EXISTS ] name [ CASCADE | RESTRICT ]
+```
+
+L’option **CASCADE** permet de forcer la suppression de tout ce qui est contenu dans le schéma (tables, vues,…) **La valeur par défaut** est **RESTRICT**, elle n’autorise que la suppression de schémas vides
 
 ## Création: table <a name="3"></a>
+Pour créer une table (et ses attributs):
+```SQL
+CREATE TABLE [ IF NOT EXISTS ] table_name
+( [{ column_name data_type }] );
+```
+
+Exemple (incomplet pour le moment):
+```SQL
+CREATE TABLE Réalisateur (
+id serial,
+nom varchar(80),
+prénom varchar(80),
+dateNaissance date
+);
+```
 
 ## Types de données: numériques <a name="4"></a>
+- Types entiers (signés):
+  - **smallint (2 octets), integer (4 octets), bigint (8 octets)**
+    
+- Types réels point fixe:
+  - **numeric** (precision, scale)
+    - precision (> 0): nombre total de chiffres significatifs
+    - scale (>= 0): nombre de chiffres après la virgule
+    - Exemple: numeric(5, 2) va de -999.99 à 999.99
+      
+- Types réels point-flottant:
+  - **real et double precision**
+  - Types numériques inexacts de précision variable
+    
+- Types auto-incrémentés:
+  - serial est un "raccourci" PostgreSQL pour avoir un type entier avec une séquence (**smallserial pour smallint**,…) afin qu’il s’auto-incrémente
 
 ## Types de données: caractères <a name="5"></a>
+- **varchar(n) ou varying(n)**
+  - Chaîne de caractères de **longueur variable d’au plus n caractères**
+
+- **char(n) ou character(n)**
+  - Chaîne de caractères de **longueur n fixe**
+  - Si moins de n caractères sont donnés, les autres seront automatiquement remplis avec des espaces
+  - Si plus de n caractères sont donnés, une erreur sera levée (sauf si les caractères excédentaires sont des espaces…)
+
+- **text**
+  - Chaîne de caractères de **longueur variable quelconque**
+  - Pas standard en SQL, mais supporté par la plupart des SGBD
  
 ## Types de données: temporels <a name="6"></a>
+- **date**
+  - Pour représenter une date **sans les heures**
+  - Le format recommandé est ISO 8601 (yyyy-mm-dd)
+  - Par exemple le 8 janvier 1999: 1999-01-08
+    
+- **time**
+  - Temps **sans la date**
+  - Par exemple: 04:05:06
+
+- **Timestamp**
+  - Permet d’avoir **la date et l’heure**
+  - Par exemple: 1999-01-08 04:05:06
+
+**time** et **timestamp** peuvent avoir l’option **with time zone** qui permet d’ajouter un fuseau horaire (par ex. 04:05:06 PST)
+  - Si rien n’est précisé, c’est équivalent à mettre: without time zone
+
+- **interval** [ fields ]
+  - Pour représenter **un intervalle de temps**
+  - fields définit l’unité, par exemple **YEAR, HOUR,…**
+  - Rarement utilisé comme type d’attribut mais souvent pour des calculs dans les requêtes, par exemple: uneDate + interval '2' months
+
+- **boolean**
+  - Valeurs standardisées SQL: **TRUE ou FALSE**
+  - N’est pas supporté nativement par tous les SGBD (par exemple MySQL utilise en réalité un TINYINT(1))
+
+- Pour avoir la liste exhaustive des types supportés par PostgreSQL: [ici](https://www.postgresql.org/docs/15/datatype.html)
 
 ## Types de données: Séquences <a name="7"></a>
+Pour créer une séquence:
+```SQL
+CREATE SEQUENCE name [ AS data_type ]
+[ INCREMENT increment ] [ MINVALUE minvalue ];
+```
+  - data_type doit être un type entier (bigint par défaut)
+  - increment vaut 1 par défaut
+  - minvalue depend de data_type, vaut 1 par défau
+  
+Exemple de création et d’utilisation d’une séquence:
+```SQL
+CREATE SEQUENCE réalisateurId AS integer;
+CREATE TABLE Réalisateur (
+id integer DEFAULT nextval('réalisateurId'),
+...
+```
+  - DEFAULT permet de définir la valeur par défaut d’un attribut
+  - nextval() permet d’obtenir la prochaine valeur de la séquence
+
+- Cet exemple est équivalent à mettre serial comme type à id
 
 ## Types de données: Création d’un ENUM <a name="8"></a>
+Pour créer un type énuméré:
+```SQL
+CREATE TYPE name AS ENUM ( [ 'label' [, ... ] ] )
+```
+
+Exemple:
+```SQL
+CREATE TYPE typeLecon AS ENUM ('cours', 'labo');
+```
+- Les valeurs d’un type énuméré sont "case sensitive"
+- Il n’est pas possible de comparer des valeurs de types énumérés différents
+- Les valeurs sont ordonnées, il est donc possible d’utiliser les opérateurs de comparaison (par exemple > ou <) entre 2 valeurs
+- Les types énumérés sont prévus pour être "constants", on ne peut pas supprimer, modifier ou changer l’ordre des valeurs (mais on peut en ajouter)
 
 ## Contraintes: introduction <a name="9"></a>
+- Une contrainte est une **condition qui doit être vérifiée pour tout tuple d’une relation/table**
+  
+- Les principaux types de contraintes sont ceux de:
+  - Domaine
+  - Clé
+  - Intégrité des entités
+  - Valeurs non NULL
+  - Valeurs uniques
+  - Intégrité référentielle
 
 ## Contraintes de domaine <a name="10"></a>
 
