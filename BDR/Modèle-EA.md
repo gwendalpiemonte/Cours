@@ -38,7 +38,7 @@
 - Peut être représenté selon plusieurs normes (**UML**, MERISE,…).
 
 ## Exemple d’une bonne structure <a name="2"></a>
-- Afin d’éviter les anomalies vues précédemment, il faut:
+- Afin d’éviter des anomalies, il faut:
   
 1. **Représenter séparément** les films et les réalisateurs afin que, par exemple, la suppression d’un film ne risque pas de supprimer son réalisateur
 
