@@ -373,7 +373,7 @@ Cardinalités
   
 - Si les 2 n’ont qu’un nom et un prénom, cela peut être modélisé par **un seul type d’entité**:
   
-  <img src="/BDR/images/HeritageSP.PNG" width="700"/>
+<img src="/BDR/images/HeritageSP.PNG" width="250"/>
   
 - type stocke une valeur gymnaste/juge (typiquement dans un enum)
   - Cet attribut sert de **discriminant**
@@ -383,7 +383,7 @@ Cardinalités
   - La date d’obtention du certificat de juge pour les juges
 - Une possibilité est d’ajouter 2 attributs à Personne:
 
-<img src="/BDR/images/HeritageSP2.PNG" width="700"/>
+<img src="/BDR/images/HeritageSP2.PNG" width="250"/>
   
 - Cela génère plusieurs **problèmes**:
   - On aura beaucoup de **valeurs inutiles** (NULL en fonction de type)
