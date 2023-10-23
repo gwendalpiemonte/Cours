@@ -56,7 +56,7 @@ R(Nom, Prénom)
   2. Idem qu’en mathématique mais uniquement si une clé primaire a été définie
   3. Dépend des données, vrai que s’il n’y a pas de NULL Exemple ne respectant pas cette propriété mathématique:
 
-<img src="/BDR/images/NotionRelationTab.PNG" width="700"/>
+<img src="/BDR/images/NotionRelationTab.PNG" width="300"/>
 
 ## Définition <a name="6"></a>
 - Toute **clé** d’une relation R (de schéma S) est définie comme un sous-ensemble K de S tel qu’il n’existe pas 2 tuples ayant la même valeur pour tous les attributs de K
