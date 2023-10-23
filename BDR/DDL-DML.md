@@ -129,7 +129,7 @@ dateNaissance date
   - Par exemple: 1999-01-08 04:05:06
 
 **time** et **timestamp** peuvent avoir l’option **with time zone** qui permet d’ajouter un fuseau horaire (par ex. 04:05:06 PST)
-  - Si rien n’est précisé, c’est équivalent à mettre: without time zone
+    - Si rien n’est précisé, c’est équivalent à mettre: without time zone
 
 - **interval** [ fields ]
   - Pour représenter **un intervalle de temps**
