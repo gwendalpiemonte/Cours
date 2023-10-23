@@ -128,7 +128,7 @@ Un type d’entité est aussi souvent appelé simplement "entité".
   - S’il y en a 3, l’association est **ternaire**
   - S’il y a n TE, l’association est **n-aire**
     
-<img src="/BDR/images/DegreAssociation.PNG" width="700"/>
+<img src="/BDR/images/DegreAssiciation.PNG" width="700"/>
 
 - **Un nom est donné à chaque association**, ici "a réalisé"
 
@@ -142,7 +142,6 @@ Cardinalités
     - Vaut en général 1 ou * (un nombre quelconque de fois)
 
 <img src="/BDR/images/Cardinalite.PNG" width="700"/>
-  
     - Si min = max, on peut ne mettre la valeur qu’une seule fois
 
 
