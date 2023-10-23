@@ -207,3 +207,9 @@ Cardinalités
 
 ## Héritage / spécialisation: Types <a name="29"></a>
 
+<img src="/BDR/images/HeritageSpecialisationType.PNG" width="700"/>
+
+- Il **faut toujours indiquer le type** de chaque héritage sur le schéma, ici il signifie qu’on:
+  - Ne veut pas de personne qui ne soit ni gymnaste ni juge (**complete**)
+  - Permet à une personne d’être à la fois juge et gymnaste en même temps (**overlapping**)
+
