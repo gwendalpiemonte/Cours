@@ -55,7 +55,7 @@
 ## Avantages du modèle EA <a name="3"></a>
 
 - Permet assez simplement de **modéliser** des problèmes comme l’exemple précédent mais aussi de beaucoup plus complexes
-- Offre une **représentation graphique** basée sur des conventionsprécises mais relativement simples à comprendre pour tous lesintervenants d’un projet (aussi les clients)
+- Offre une **représentation graphique** basée sur des conventions précises mais relativement simples à comprendre pour tous les intervenants d’un projet (aussi les clients)
 - Supporté par beaucoup de logiciels (StarUML, …)
 - Certains permettent de générer automatiquement le modèle relationnel voir le code SQL (par exemple PowerDesigner)
 
