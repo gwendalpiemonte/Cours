@@ -20,6 +20,7 @@ DDL:
 15. [Références: clé primaire ](#15)
 16. [Contraintes d’intégrité référentielle](#16)
 
+
 DML:
 1. [INSERT](#17)
 2. [DELETE](#18)
@@ -83,7 +84,23 @@ DML:
 ## Intégrité référentielle: exemple <a name="23"></a>
 
 ## Modification de la structure d’une BDD <a name="24"></a> 
+- La commande **ALTER** permet de modifier les objets d’une base de données, par exemple pour une table on peut:
+  - Ajouter ou supprimer des attributs
+  - Modifier ou ajouter des valeurs par défaut aux attributs
+  - Modifier ou ajouter des contraintes
+  - […](https://www.postgresql.org/docs/15/sql-altertable.html)
 
+Exemples:
+```SQL
+ALTER TABLE Film ADD COLUMN sortieCiné boolean NOT NULL;
+ALTER TABLE Film ALTER COLUMN sortieCiné SET DEFAULT TRUE;
+```
+
+Les 2 instructions précédentes peuvent être faites en une seule:
+```SQL
+ALTER TABLE Film ADD COLUMN sortieCiné boolean NOT NULL
+DEFAULT TRUE;
+```
 
 
 
