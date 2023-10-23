@@ -165,7 +165,6 @@ Un type d’entité est aussi souvent appelé simplement "entité".
 
 ## Cardinalités <a name="13"></a>
 
-Cardinalités
 - La cardinalité (ou multiplicité) est une paire [min, max] de valeurs telle que:
   - min (cardinalité minimale) est le nombre minimal de fois qu’un TE peut intervenir dans l’association
     - Vaut en général 0 ou 1
