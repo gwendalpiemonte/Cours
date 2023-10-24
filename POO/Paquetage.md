@@ -14,7 +14,7 @@ Les paquetages peuvent être organisés de manière hiérarchique :
 - **package nom1.nom2.…nomN;**  
   => hiérarchie de répertoires pour les fichiers .class: **nom1/nom2/…/nomN**.
 
-### Utilisation des paquetages
+## Utilisation des paquetages
 Par défaut, le compilateur recherche la définition des classes utilisées dans le paquetage courant (ou par défaut). Pour les autres, il est nécessaire de préciser dans quel paquetage elles se trouvent.   
 
 Utilisation d’une classe, notation pointée : 
