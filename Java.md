@@ -50,41 +50,6 @@
 
 <img src="/BDR/images/SQLLanguage.PNG" width="700"/>
 
-## Chaînes de caractères
-- La déclaration d’instances de la classe String peut être simplifiée :
-  - au lieu de les construire au moyen de tableaux de caractères,
-```Java
-char[] data = {'D', 'e', ' ', 'b', 'e', 'l', 'l', 'e', 's'};
-String s = new String(data); // ne jamais appeler new String() 
-```
-
-  - simplement,
-```Java
-String s = "De belles"; // s = ""; pour un String vide.
-```
-
-- Surcharge de l’opérateur + entre la classe String et les types primitifs :
-  - Rem. : la surcharge utilisateur des opérateurs n’est pas possible.
-```Java
-System.out.println(s + " valeurs : " + 1 + ", " + true);
-// affiche : « De belles valeurs : 1, true ».
-```
-
-- Les valeurs des objets **String** ne sont jamais modifiées (utiliser la classe **StringBuilder**), les opérations usuelles créent de nouveaux objets **String**.
-- Après
-```Java
-String s = "a", p = s; s += "!";
-```
-- s se réfère à un nouvel objet String ("a!"), p à l’ancien ("a").
-
-- Vraiment des objets :
-```Java
-s = s.substring(1); // contient "!"
-s = "Go!".substring(1, 2); // contient "o!"
-```
-
-
-
 
 
 
