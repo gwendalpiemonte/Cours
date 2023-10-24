@@ -149,16 +149,15 @@ Par ailleurs, la classe Class définit des méthodes de **réflexion**, comme :
 - **Class getSuperClass()**, rendant l’éventuelle superclasse de la classe,
 - **Object newInstance()**, permettant de créer un objet de la classe, etc.
 
-## Polymorphisme : isInstance
-
-La méthode **boolean isInstance(Object o)** définie sur la classe **Class** permet d’invoquer dynamiquement l’opérateur **instanceof**.   
-
 ### Exemples
 
 <img src="/POO/images/Poly6.PNG" width="700"/>
 
 <img src="/POO/images/Poly7.PNG" width="700"/>
 
+## Polymorphisme : isInstance
+
+La méthode **boolean isInstance(Object o)** définie sur la classe **Class** permet d’invoquer dynamiquement l’opérateur **instanceof**.   
 
 Exemple :
 ```Java
