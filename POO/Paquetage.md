@@ -45,7 +45,7 @@ Attention : n’importe pas les sous-paquetages d’un paquetage.
 import people.*;
 ```
 
-<img src="/Poo/images/Paquetage.PNG" width="700"/>
+<img src="/POO/images/Paquetage.PNG" width="700"/>
 
 ## Accès au paquetages
 **CLASSPATH**
@@ -61,7 +61,7 @@ Il est toujours possible d’accéder aux classes prédéfinies Java (**java.*, 
 
 Les classes prédéfinies de **java.lang.*** sont implicitement importées.
 
-<img src="/Poo/images/AccesPaquetage.PNG" width="700"/>
+<img src="/POO/images/AccesPaquetage.PNG" width="700"/>
 
 
 
