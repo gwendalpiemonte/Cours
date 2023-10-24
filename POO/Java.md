@@ -7,7 +7,7 @@
 - Les **langages interprétés** sont traduits dynamiquement pendant l’exécution par l’interpréteur. 
   - Ils favorisent les fonctionnalités et la productivité au détriment de la performance (ex : JavaScript, Python).
   
-<img src="/BDR/images/SQLLanguage.PNG" width="700"/>
+<img src="/POO/images/CvsI.PNG" width="700"/>
 
 - **Langages compilés (+/-)**
   - (Souvent) plus rapide que les langages interprétés.
@@ -48,7 +48,7 @@
 ## Références
 - En Java, tous les objets sont manipulés au moyen de références typées.
 
-<img src="/BDR/images/SQLLanguage.PNG" width="700"/>
+<img src="/POO/images/Ref.PNG" width="700"/>
 
 
 
