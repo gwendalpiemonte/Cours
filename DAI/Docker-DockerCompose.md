@@ -105,8 +105,8 @@ d'autres conteneurs.
 
 
 ## Docker <a name="4"></a>
-Docker est un ensemble de produits de plateforme en tant que service (PaaS) qui utilisent OS-
-virtualisation de niveau pour fournir des logiciels dans des packages appelés conteneurs.
+> Docker est un ensemble de produits de plateforme en tant que service (PaaS) qui utilisent OS-
+> virtualisation de niveau pour fournir des logiciels dans des packages appelés conteneurs.
 
 Docker est composé de deux parties :
 
@@ -139,24 +139,24 @@ correspond à une commande exécutable dans un shell. Les instructions sont
 exécuté dans l'ordre. Chaque instruction crée un nouveau calque dans l'image.
 
 La spécification Dockerfile définit les instructions suivantes (parmi autres):
-- FROM : spécifie l'image de base
-- ARG : spécifie un argument à passer à la commande build
-- RUN : exécute une commande dans le conteneur
-- COPIER : copie les fichiers du contexte de construction vers le conteneur
-- CMD : spécifie la commande à exécuter au démarrage du conteneur
-- ENTRYPOINT : précise le point d'entrée du conteneur
-- ENV : spécifie une variable d'environnement
-- EXPOSE : spécifie le port à exposer
-- WORKDIR : spécifie le répertoire de travail
-- VOLUME : spécifie un volume
+- `FROM` : spécifie l'image de base
+- `ARG` : spécifie un argument à passer à la commande build
+- `RUN` : exécute une commande dans le conteneur
+- `COPIER` : copie les fichiers du contexte de construction vers le conteneur
+- `CMD` : spécifie la commande à exécuter au démarrage du conteneur
+- `ENTRYPOINT` : précise le point d'entrée du conteneur
+- `ENV` : spécifie une variable d'environnement
+- `EXPOSE` : spécifie le port à exposer
+- `WORKDIR` : spécifie le répertoire de travail
+- `VOLUME` : spécifie un volume
 
 Un Dockerfile est ensuite utilisé pour créer une image Docker. Le Dockerfile est passé
-à la commande docker build. La commande docker build construit l'image
-à partir du fichier Docker. La commande docker build prend le Dockerfile et le
+à la commande `docker build`. La commande `docker build` construit l'image
+à partir du fichier Docker. La commande `docker build` prend le Dockerfile et le
 construire un contexte comme arguments.
 
-Une fois l'image créée, elle peut être exécutée avec la commande docker run. Le
-La commande docker run prend le nom de l'image comme argument.
+Une fois l'image créée, elle peut être exécutée avec la commande `docker run`. Le
+La commande `docker run` prend le nom de l'image comme argument.
 
 La plupart des images Docker sont basées sur Linux mais d'autres sont également disponibles
 (Windows par exemple). Il est possible d'exécuter des conteneurs Linux sur Linux,
@@ -190,15 +190,15 @@ Lors de la création d'une image, Docker enverra le contexte de construction au 
 démon.
 
 Le contexte de build est le répertoire qui contient le Dockerfile. Ignorer
-fichiers qui ne sont pas nécessaires pour créer l'image, vous pouvez créer un .dockerignore
-fichier dans le contexte de construction. Le fichier .dockerignore est similaire au fichier .gitignore.
+fichiers qui ne sont pas nécessaires pour créer l'image, vous pouvez créer un `.dockerignore`
+fichier dans le contexte de construction. Le fichier `.dockerignore` est similaire au fichier `.gitignore`.
 
-Cela peut être utile pour ignorer des fichiers tels que le répertoire cible d'un Maven
+Cela peut être utile pour ignorer des fichiers tels que le répertoire `target` d'un Maven
 projet ou des clés privées afin qu’elles ne soient pas envoyées au démon Docker.
 
 ### Cheatsheet
 
-```bash
+```sh
 # Build and tag an image
 docker build -t <image-name> <build-context>
 
@@ -232,8 +232,8 @@ docker image prune
 
 ## Docker Compose <a name="5"></a>
 
-Docker Compose est un outil pour définir et exécuter plusieurs conteneurs
-Applications Docker.
+> Docker Compose est un outil pour définir et exécuter plusieurs conteneurs
+> Applications Docker.
 
 Docker Compose est un outil utilisé pour exécuter plusieurs conteneurs. C'est utilisé
 pour exécuter plusieurs conteneurs liés les uns aux autres. Il est utilisé pour courir
@@ -257,28 +257,27 @@ Fichier Docker Compose. Il est plus facile à utiliser que les simples commandes
 peut être versionné avec l’application.
 
 Le format du fichier Docker Compose est YAML. Le fichier Docker Compose est
-nommé docker-compose.yml par convention.
+nommé `docker-compose.yml` par convention.
 
 Plus d'informations sur la spécification Docker Compose peuvent être trouvées dans
 la documentation officielle : [ici](https://docs.docker.com/compose/compose-déposer/)
 
 ### Docker Compose v1 et Docker Compose v2
 
-Veuillez noter qu'il existe deux versions de Docker Compose : Docker
-Composez v1 et Docker Compose v2.
+Veuillez noter qu'il existe deux versions de Docker Compose : Docker Composez v1 et Docker Compose v2.
 
 Docker Compose v1 est la version originale de Docker Compose. Il a été construit
 avec Python et est désormais obsolète. Il est toujours disponible mais ce n'est pas le cas
 recommandé de l'utiliser. La commande pour utiliser Docker Compose v1 était
-docker-composer.
+`docker-compose`.
 
 Docker Compose v2 est la nouvelle version de Docker Compose. Il est construit avec Go
 et c'est la version recommandée à utiliser. La nouvelle commande pour utiliser Docker
-Compose v2 est Docker Compose.
+Compose v2 est `docker compose`.
 
 ### Cheatsheet
 
-```bash
+```sh
 # Start all services defined in the docker-compose.yml file
 docker compose up
 
@@ -340,16 +339,16 @@ Instructions HEALTHCHECK.
 
 L'instruction HEALTHCHECK prend les arguments suivants :
 
-- --interval : l'intervalle entre deux contrôles de santé
-- --timeout : le délai d'expiration d'un contrôle de santé
-- --start-period : le temps d'attente avant de démarrer les contrôles de santé
-- --retries : le nombre de tentatives avant de considérer le conteneur malsains
-- CMD : la commande à exécuter pour vérifier la santé du conteneur
+- `--interval` : l'intervalle entre deux contrôles de santé
+- `--timeout` : le délai d'expiration d'un contrôle de santé
+- `--start-period` : le temps d'attente avant de démarrer les contrôles de santé
+- `--retries` : le nombre de tentatives avant de considérer le conteneur malsains
+- `CMD` : la commande à exécuter pour vérifier la santé du conteneur
 
 Par exemple, l'instruction suivante définit un contrôle de santé qui s'exécute chaque
 30 secondes et cela expire après 10 secondes :
 
-```bash
+```sh
 HEALTHCHECK --interval=30s --timeout=10s \
 CMD curl -f http://localhost/ || exit 1
 ```
@@ -361,13 +360,13 @@ Si aucun contrôle de santé n'est défini, le conteneur sera considéré comme 
 dès qu'il est en marche. Ce n'est pas toujours ce que vous souhaitez. Tu pourrais vouloir
 attendez que le conteneur soit prêt à accepter les demandes.
 
-Vous pouvez définir un bilan de santé directement dans le fichier Docker Compose avec le
+Vous pouvez définir un `healthcheck` directement dans le fichier Docker Compose avec le
 option de contrôle de santé. Il vérifiera ensuite la santé du conteneur au démarrage.
 
 Par exemple, l'option suivante définit un contrôle de santé qui s'exécute tous les 30
 secondes et cela expire après 10 secondes :
 
-```bash
+```sh
 healthcheck:
   test: ["CMD", "curl", "-f", "http://localhost/"]
   interval: 30s
@@ -381,7 +380,7 @@ ordinateur.
 
 Vous pouvez utiliser les commandes suivantes pour libérer de l'espace :
 
-```bash
+```sh
 # Delete all stopped containers, all networks not used by at least one container, all
   anonymous volumes not used by at least one container, all images without at
   least one container associated to them and all build cache
@@ -404,13 +403,13 @@ plus nécessaire.
 
 Vous pouvez utiliser des constructions en plusieurs étapes pour réduire la taille de l'image finale. Le le processus serait le suivant :
 
-1. Commencez à partir d’une image de base nommée builder.
+1. Commencez à partir d’une image de base nommée `builder`.
 2. Installez les dépendances pour créer votre application.
 3. Copiez la source de votre application dans l'image.
 4. Créez l'application.
-5. Commencez à partir d’une image de base nommée runner.
+5. Commencez à partir d’une image de base nommée `runner`.
 6. Installez les dépendances pour exécuter votre application (si nécessaire).
-7. Copiez les artefacts de construction de l'image du générateur vers l'image du coureur.
+7. Copiez les artefacts de construction de l'image du `builder` vers l'image du `runner`.
 8. Exécutez l'application.
 
 L'image finale ne contiendra que les dépendances pour exécuter votre application
@@ -421,11 +420,11 @@ de l'image.
 ### Constructions multi-architectures
 
 Par défaut, Docker utilisera l'architecture de votre ordinateur. Si vous êtes
-en utilisant un ordinateur avec une architecture amd64, Docker utilisera l'amd64
+en utilisant un ordinateur avec une architecture `amd64`, Docker utilisera l'`amd64`
 version de l'image.
 
 Vous pouvez utiliser des versions multi-architectures pour créer des images pour plusieurs
-architectures, telles que amd64, arm64 et armv7. Vous pourrez ensuite publier le
+architectures, telles que `amd64`, `arm64` et `armv7`. Vous pourrez ensuite publier le
 images sur un registre. Lorsque vous extrairez l'image, Docker le fera
 utiliser automatiquement la version qui correspond à l'architecture de votre
 ordinateur, rendant votre application compatible avec plusieurs architectures.
