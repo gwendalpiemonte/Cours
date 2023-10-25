@@ -144,7 +144,7 @@ le client et le serveur et l'ordre d'échange. Il est important de définir
 ces exemples pour illustrer le protocole et aider le lecteur à
 comprendre le protocole à l'aide de diagrammes de séquences ou d'états par exemple.
 
-<img src="/DAI/images/protocole.PNG" width="700"/>
+<img src="/DAI/images/protocole.PNG" width="400"/>
 
 ## Ports réservés
 
