@@ -34,6 +34,15 @@ Il y a 9 règles de transformation, elles servent à convertir les:
 
 
 ## Types d’entités normaux (forts) <a name="2"></a>
+Pour chaque type d’entité normal (fort) E:
+- **Créer une relation R avec tous les attributs** simples, et les composantes simples des attributs composites, de E
+- **La clé primaire de E devient celle de R**
+
+<img src="/BDR/images/CasSimple.PNG" width="700"/>
+<img src="/BDR/images/AttributComposite.PNG" width="700"/>
+<img src="/BDR/images/PlusUnAttribut.PNG" width="700"/>
+
+
 
 ## Types d’entité faibles <a name="3"></a>
 ## Héritages <a name="4"></a>
