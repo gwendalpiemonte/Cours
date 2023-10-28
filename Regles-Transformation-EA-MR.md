@@ -38,21 +38,13 @@ Pour chaque type d’entité normal (fort) E:
 - **Créer une relation R avec tous les attributs** simples, et les composantes simples des attributs composites, de E
 - **La clé primaire de E devient celle de R**
 
-Cas simple:   
+|  Cas simple  | Attribut composite  | Clé de plus d'un attribut  |
+|--------------|---------------------|----------------------------|
+| <img src="/BDR/images/CasSimple.PNG" width="120"/>  | <img src="/BDR/images/AttributComposite.PNG" width="120"/>| <img src="/BDR/images/PlusUnAttribut.PNG" width="120"/>  |
+| R1([k](), a, b)  | R2([k](), c1, c2)| R3([k1, k2](), d)  |
+
+
    
-<img src="/BDR/images/CasSimple.PNG" width="120"/> `R1(k, a, b)`
-
-<p style="color: red;">texte</p>
-
-
-Attribut composite:   
-   
-<img src="/BDR/images/AttributComposite.PNG" width="120"/>
-
-Clé de plus d'un attribut:   
-   
-<img src="/BDR/images/PlusUnAttribut.PNG" width="120"/>
-
 
 
 ## Types d’entité faibles <a name="3"></a>
