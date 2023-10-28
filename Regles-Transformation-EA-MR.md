@@ -44,10 +44,17 @@ Pour chaque type d’entité normal (fort) E:
 | R1([k](), a, b)  | R2([k](), c1, c2)| R3([k1, k2](), d)  |
 
 
-   
-
-
 ## Types d’entité faibles <a name="3"></a>
+Pour chaque type d’entité faible:
+- Créer **une relation R contenant tous les attributs de E**
+- La **clé est celle du type d’entité fort avec le(s) attribut(s) discriminant(s)**
+
+<img src="/BDR/images/EntiteFaibleTransfo.PNG" width="120"/>
+
+
+
+
+
 ## Héritages <a name="4"></a>
 ## Associations binaires `1:1` <a name="5"></a>
 ## Associations binaires `1:N` <a name="6"></a>
