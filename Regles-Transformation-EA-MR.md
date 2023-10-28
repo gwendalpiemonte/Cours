@@ -49,8 +49,11 @@ Pour chaque type d’entité faible:
 - Créer **une relation R contenant tous les attributs de E**
 - La **clé est celle du type d’entité fort avec le(s) attribut(s) discriminant(s)**
 
-<img src="/BDR/images/EntiteFaibleTransfo.PNG" width="120"/>
+<img src="/BDR/images/EntiteFaibleTransfo.PNG" width="400"/>
 
+- Type d’entité fort: R1([k1](), a)
+- Type d’entité faible: R2([k1, k2](), b)
+- Contrainte de clé **étrangère**: R2.k1 référence R1.k1
 
 
 
