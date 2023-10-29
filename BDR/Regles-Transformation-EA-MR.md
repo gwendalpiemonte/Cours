@@ -16,8 +16,8 @@
 8. [Attributs multivalués](#8)
 9. [Associations n-aires](#9)
 10. [Associations réflexives](#10)
-   - [N:M](#101)
-   - [1:N](#102)
+     - [N:M](#101)
+     - [1:N](#102)
 
 
 ## Introduction <a name="1"></a>
