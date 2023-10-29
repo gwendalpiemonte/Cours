@@ -172,6 +172,83 @@ La différence avec la transformation d’une association 0..1 – 1 est que cet
   R3.k2 NOT NULL|
 
 ## Associations binaires `N:M` <a name="7"></a>
+Les deux types d’entité se transforment comme des types d’entité normaux (forts)   
+
+L’association devient une relation:
+- Contenant tous ses éventuels attributs
+- **Ayant pour clé primaire la combinaison des clés des 2 types d’entité** (+ ses éventuels attributs définis comme membre de la clé primaire)
+
+| <img src="/BDR/images/Assonm.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R1([k1](), a)
+  R2([k2, k3](), b)
+  R3([k1, k2, k3](), c)
+  R3.k1 référence R1.k1
+  (R3.k2, R3.k3) référence (R2.k2, R2.k3)  |
+
 ## Attributs multivalués <a name="8"></a>
+En faire une relation qui:
+- Possède un attribut (monovalué) qui correspond à l’attribut multivalué
+- A comme clé la combinaison de son attribut et de la clé du type d’entité auquel il appartenait
+
+| <img src="/BDR/images/AssoMulti.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R1([k](), b)
+  R2([k, a]())
+  R2.k référence E.k  |
+
 ## Associations n-aires <a name="9"></a>
+Comme 1ère étape on **transforme l’association n-aire en n associations binaires 1:N** en:
+1. **Transformant l’association en type d’entité** et en lui attribuant une clé artificielle
+2. **Créant une association de type 1 à plusieurs** depuis ce type d’entité **vers chacun des types d’entités** qui étaient reliés par l’association Le côté 1 est mis du côté des types d’entité de base
+
+<img src="/BDR/images/AssoNaire.PNG" width="350"/>
+
+Ensuite il faut appliquer **la règle de transformation des associations 1:N vue précédemment**
+
+| <img src="/BDR/images/AssoNaire2.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R1([k1](), a)
+  R2([k2]())
+  R3([k3](), b)
+  R4([k4](), k1, k2, k3)
+  R4.k1 référence E1.k1, R4.k1 NOT NULL
+  R4.k2 référence E2.k2, R4.k2 NOT NULL
+  R4.k3 référence E3.k3, R4.k3 NOT NULL  |
+
 ## Associations réflexives <a name="10"></a>
+
+### N:M
+La transformation est la même que pour toutes les association N:M
+
+| <img src="/BDR/images/AssoRefnm.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R([a](), b, c)
+  R2([aRôle1, aRôle2]())
+  R2.aRôle1 référence R.a
+  R2.aRôle2 référence R.a  |
+
+### 1:N
+
+| <img src="/BDR/images/AssoRef1n.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R([a](), b, c)
+  R2([aRôle1, aRôle2]())
+  R2.aRôle1 référence R.a
+  R2.aRôle2 référence R.a  |
+
+Cette variante est recommandée notamment parce qu'elle:
+- **Sépare mieux les concepts** (par ex. lien de parenté du slide précédent)
+- **Est supportée par tous les SGBD** au niveau des options de contrainte d’intégrité référentielle (ON UPDATE CASCADE n’est par exemple pas supporté par MySQL dans la variante 1) 
+
+
+
+
+
+
+
+
+
+
+
+
