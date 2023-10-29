@@ -191,7 +191,7 @@ En faire une relation qui:
 - Possède un attribut (monovalué) qui correspond à l’attribut multivalué
 - A comme clé la combinaison de son attribut et de la clé du type d’entité auquel il appartenait
 
-| <img src="/BDR/images/AssoMulti.PNG" width="350"/>  |
+| <img src="/BDR/images/AssoMulti.PNG" width="200"/>  |
 |---------------------------------------------------|
 | R1([k](), b)
   R2([k, a]())
@@ -202,7 +202,7 @@ Comme 1ère étape on **transforme l’association n-aire en n associations bina
 1. **Transformant l’association en type d’entité** et en lui attribuant une clé artificielle
 2. **Créant une association de type 1 à plusieurs** depuis ce type d’entité **vers chacun des types d’entités** qui étaient reliés par l’association Le côté 1 est mis du côté des types d’entité de base
 
-<img src="/BDR/images/AssoNaire.PNG" width="350"/>
+<img src="/BDR/images/AssoNaire.PNG" width="650"/>
 
 Ensuite il faut appliquer **la règle de transformation des associations 1:N vue précédemment**
 
@@ -221,7 +221,7 @@ Ensuite il faut appliquer **la règle de transformation des associations 1:N vue
 ### N:M
 La transformation est la même que pour toutes les association N:M
 
-| <img src="/BDR/images/AssoRefnm.PNG" width="350"/>  |
+| <img src="/BDR/images/AssoRefnm.PNG" width="200"/>  |
 |---------------------------------------------------|
 | R([a](), b, c)
   R2([aRôle1, aRôle2]())
@@ -230,7 +230,7 @@ La transformation est la même que pour toutes les association N:M
 
 ### 1:N
 
-| <img src="/BDR/images/AssoRef1n.PNG" width="350"/>  |
+| <img src="/BDR/images/AssoRef1n.PNG" width="200"/>  |
 |---------------------------------------------------|
 | R([a](), b, c)
   R2([aRôle1, aRôle2]())
