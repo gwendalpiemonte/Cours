@@ -6,11 +6,18 @@
 3. [Types d’entité faibles](#3)
 4. [Héritages](#4)
 5. [Associations binaires `1:1`](#5)
+   - [1 des 2 côtés](#51)
+   - [0..1 des 2 côtés](#52)
+   - [cas spéciaux](#53)
 6. [Associations binaires `1:N`](#6)
+   - [sans attribut](#61)
+   - [avec attribut](#62)
 7. [Associations binaires `N:M`](#7)
 8. [Attributs multivalués](#8)
 9. [Associations n-aires](#9)
 10. [Associations réflexives](#10)
+   - [N:M](#101)
+   - [1:N](#102)
 
 
 ## Introduction <a name="1"></a>
@@ -92,7 +99,7 @@ sur l’autre (**cardinalité minimale de 1**) et:
 
 À noter que dans les cas précédents (relations enfant dans un héritage) les clés étrangères étaient aussi UNIQUE et NOT NULL, mais implicitement du fait que c’était aussi des clé primaires
 
-### 1 des 2 côtés
+### 1 des 2 côtés <a name="51"></a>
 Idem que le cas précédent sauf qu’ici **on doit choisir un des deux types d’entité**
 
 | En choisissant E1   | 
@@ -102,7 +109,7 @@ Idem que le cas précédent sauf qu’ici **on doit choisir un des deux types d�
   R1([k1](), k2, a, c)
   R1.k2 référence R2.k2, R1.k2 UNIQUE et NOT NULL | 
 
-### 0..1 des 2 côtés
+### 0..1 des 2 côtés <a name="52"></a>
 Identique au cas précédent, il faut **choisir un type d’entité**
 
 | En choisissant E2  | 
@@ -114,7 +121,7 @@ Identique au cas précédent, il faut **choisir un type d’entité**
 
 À noter que cette fois la clé étrangère n’est **pas NOT NULL (car la cardinalité minimale est de 0)**
 
-### cas spéciaux
+### cas spéciaux <a name="53"></a>
 Un type d’entité est considéré comme "spécial" s’il **n’a pas de clé explicite** (enfant d’héritage par exemple)   
 
 Les règles vues précédemment, dans lesquelles il faut choisir un type d’entité, sont valides si les 2 types d’entité sont normaux ou si les 2 sont spéciaux
@@ -134,7 +141,7 @@ Dans cet exemple c’est donc **automatiquement E2 qui est choisi** pour la tran
 
 ## Associations binaires `1:N` <a name="6"></a>
 
-### Sans attribut
+### Sans attribut <a name="61"></a>
 De base, on applique **la même règle que pour les associations 0..1 – 1**
 
 | <img src="/BDR/images/Asso1n1.PNG" width="350"/>  |
@@ -152,7 +159,7 @@ De base, on applique **la même règle que pour les associations 0..1 – 1**
 
 La différence avec la transformation d’une association 0..1 – 1 est que cette fois la clé étrangère n’est pas UNIQUE car la cardinalité max du type référencé (E2) vaut n (au lieu de 1)
 
-### Avec attribut
+### Avec attribut <a name="62"></a>
 **Si l’association a au moins un attribut**, le cas avec une cardinalité de 1 se transforme de manière identique
 
 | <img src="/BDR/images/Asso1nA.PNG" width="350"/>  |
@@ -218,7 +225,7 @@ Ensuite il faut appliquer **la règle de transformation des associations 1:N vue
 
 ## Associations réflexives <a name="10"></a>
 
-### N:M
+### N:M <a name="101"></a>
 La transformation est la même que pour toutes les association N:M
 
 | <img src="/BDR/images/AssoRefnm.PNG" width="200"/>  |
@@ -228,7 +235,7 @@ La transformation est la même que pour toutes les association N:M
   R2.aRôle1 référence R.a
   R2.aRôle2 référence R.a  |
 
-### 1:N
+### 1:N <a name="102"></a>
 
 | <img src="/BDR/images/AssoRef1n.PNG" width="200"/>  |
 |---------------------------------------------------|
