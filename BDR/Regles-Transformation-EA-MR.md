@@ -125,16 +125,52 @@ Dans cet exemple c’est donc **automatiquement E2 qui est choisi** pour la tran
 
 | automatiquement E2  | 
 |--------------|
-| <img src="/BDR/images/AssoSP.PNG" width="400"/> | 
+| <img src="/BDR/images/AssoSP.PNG" width="350"/> | 
 | R1([k1](), a)
   R3([k3](), c)
   R2([k1](), k3, b, d)
   R2.k1 référence R1.k1
   R2.k3 référence R3.k3, R2.k3 UNIQUE et NOT NULL| 
 
-
-
 ## Associations binaires `1:N` <a name="6"></a>
+
+### Sans attribut
+De base, on applique **la même règle que pour les associations 0..1 – 1**
+
+| <img src="/BDR/images/Asso1n1.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R2([k2](), b) 
+  R1([k1](), k2, a)
+  R1.k2 référence R2.k2  |
+
+| <img src="/BDR/images/Asso1n2.PNG" width="350"/>|
+|-------------------------------------------------|
+| R2([k2](), b) 
+  R1([k1](), k2, a) 
+  R1.k2 référence R2.k2 
+  la cardinalité de E1 vaut 1 (schéma de gauche) => R1.k2 NOT NULL|
+
+La différence avec la transformation d’une association 0..1 – 1 est que cette fois la clé étrangère n’est pas UNIQUE car la cardinalité max du type référencé (E2) vaut n (au lieu de 1)
+
+### Avec attribut
+**Si l’association a au moins un attribut**, le cas avec une cardinalité de 1 se transforme de manière identique
+
+| <img src="/BDR/images/Asso1nA.PNG" width="350"/>  |
+|---------------------------------------------------|
+| R2([k2](), b)
+  R1([k1](), k2, a, c)
+  R1.k2 référence R2.k2, R1.k2 NOT NULL  |
+  
+|Dans ce cas (cardinalité 0..1)|
+| <img src="/BDR/images/Asso1nA2.PNG" width="350"/>|
+|-------------------------------------------------|
+| R2([k2](), b)
+  R1([k1](), a)
+  R3([k1](), k2, c)
+  R3.k1 référence R1.k1
+  R3.k2 référence R2.k2
+  R3.k2 NOT NULL|
+
 ## Associations binaires `N:M` <a name="7"></a>
 ## Attributs multivalués <a name="8"></a>
 ## Associations n-aires <a name="9"></a>
