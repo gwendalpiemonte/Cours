@@ -24,23 +24,21 @@ complète le. N'hésitez pas à faire des pauses. Le contenu de ce chapitre sera
 
 
 ## Installation du logiciel : traditionnel vs conteneurisation <a name="2"></a>
-Lorsque vous souhaitez installer un logiciel sur votre ordinateur, la méthode traditionnelle est
-pour télécharger un programme d'installation, exécutez-le et suivez les instructions. L'installateur va
-installez le logiciel sur votre ordinateur et vous pourrez l'utiliser.
+Lorsque vous souhaitez installer un logiciel sur votre ordinateur, la méthode traditionnelle est de 
+télécharger un programme d'installation, l'exécuter et ensuite vous pourrez l'utiliser.
 
-Le programme d'installation a écrit certains fichiers sur votre ordinateur et les a modifiés
+Le programme d'installation écrit certains fichiers sur votre ordinateur et modifie
 certains paramètres. Il peut être assez difficile de savoir ce que l'installateur a fait
-sur ton ordinateur. Il peut également être difficile de désinstaller le logiciel, car
+sur votre ordinateur. Il peut également être difficile de désinstaller le logiciel, car
 vous devez savoir ce que l'installateur a fait. Même si l'installateur dispose d'un
-programme de désinstallation, il n'aurait pas pu tout supprimer.
+programme de désinstallation, il n'aurait pas tout supprimer.
 
 Le problème survient lorsque vous souhaitez installer une autre version du
 logiciel ou sur un autre ordinateur : si vous installez la nouvelle version, elle
 écraser l'ancienne version. Si vous souhaitez conserver l'ancienne version, vous devez
-installez la nouvelle version dans un autre répertoire. Si tu veux garder les deux
+installez la nouvelle version dans un autre répertoire. Si vous voulez garder les deux
 versions, vous devez installer la nouvelle version dans un autre répertoire, et vous
-vous devez modifier les paramètres de l'application pour utiliser la nouvelle version. Il
-devient tout un gâchis.
+vous devez modifier les paramètres de l'application pour utiliser la nouvelle version.
 
 Si vous souhaitez installer le logiciel sur un autre ordinateur, vous devez
 modifier manuellement les paramètres ; il peut être difficile de savoir quoi changer.
@@ -53,20 +51,20 @@ ordinateur sur lequel le logiciel de conteneurisation est installé.
 
 Chaque conteneur est indépendant des autres. Vous pouvez exécuter plusieurs
 conteneurs sur le même ordinateur. Vous pouvez exécuter plusieurs conteneurs d'un
-logiciels utilisant des versions différentes, sachant qu'elles n'interféreront pas avec
+logiciels utilisant des versions différentes, sachant qu'elles n'interféreront pas 
 l'un l'autre.
 
 Les conteneurs sont légers. Ils sont plus rapides à démarrer que les machines virtuelles.
 Ils sont également plus rapides à créer et à détruire que les machines virtuelles.
 
-Le logiciel de conteneurisation est appelé moteur de conteneur. Le plus
+Le logiciel de conteneurisation est appelé moteur de conteneur.
 Le moteur de conteneurs le plus populaire est Docker. Docker est une implémentation de
 Spécification de l’Open Container Initiative (OCI).
 
 
 ## OCI, images, conteneurs et registres <a name="3"></a>
 La spécification OCI définit une norme pour les images de conteneurs et les conteneurs
-durées d'exécution. La spécification OCI est implémentée par Docker, mais aussi par d'autres
+à durées d'exécution. La spécification OCI est implémentée par Docker, mais aussi par d'autres
 moteurs de conteneurs.
 
 La spécification OCI définit les termes suivants (entre autres) :
@@ -75,12 +73,12 @@ La spécification OCI définit les termes suivants (entre autres) :
 - Conteneur : une instance exécutable d'une image
 - Registre : un service qui stocke des images
 
-Une image de conteneur est un package qui contient tout ce dont vous avez besoin pour exécuter un
+Une image de conteneur est un package qui contient tout ce dont vous avez besoin pour exécuter une
 application. Il contient l'application et toutes ses dépendances. Ça aussi
 contient des métadonnées sur l'image, telles que l'auteur, la version, le
 descriptif, etc
 
-Une image de conteneur est immuable. Il ne peut pas être modifié. Si tu veux
+Une image de conteneur est immuable. Il ne peut pas être modifié. Si vous voulez
 modifier une image de conteneur, vous devez créer une nouvelle image.
 
 Une image conteneur est composée de calques. Chaque couche est un ensemble de fichiers. Le
@@ -91,7 +89,7 @@ modifié.
 Une image de conteneur est stockée dans un registre de conteneurs. Un registre de conteneurs est un
 service qui stocke les images de conteneurs. Le registre de conteneurs le plus populaire est
 DockerHub. Il s'agit d'un registre public. Vous pouvez également créer votre propre compte privé
-enregistrement.
+d'enregistrements.
 
 Une image de conteneur peut être téléchargée à partir d'un registre de conteneurs. Ça peut aussi
 être téléchargé dans un registre de conteneurs.
@@ -100,8 +98,8 @@ Une image de conteneur peut être utilisée pour créer un conteneur. Un contene
 instance exécutable d’une image. Un conteneur est créé à partir d'une image. C'est
 possible de créer plusieurs conteneurs à partir de la même image.
 
-Un conteneur est isolé du reste de l'ordinateur. Il est isolé de
-d'autres conteneurs.
+Un conteneur est isolé du reste de l'ordinateur. Il est isolé des 
+autres conteneurs.
 
 
 ## Docker <a name="4"></a>
@@ -119,9 +117,9 @@ avec le démon Docker via un socket.
 Sous macOS et Windows, le démon Docker s'exécute dans une machine virtuelle. Le
 Docker CLI communique avec le démon Docker via un socket.
 
-La Docker CLI est utilisée pour gérer les conteneurs. Il est utilisé pour créer, démarrer, arrêter,
+Le Docker CLI est utilisé pour gérer les conteneurs. Il est utilisé pour créer, démarrer, arrêter,
 redémarrer, supprimer, etc. les conteneurs. Il est également utilisé pour gérer les images. C'est utilisé
-pour télécharger, télécharger, créer, etc. des images.
+pour télécharger, créer, etc. des images.
 
 ### Spécification du fichier Docker (DockerFile)
 
@@ -152,10 +150,10 @@ La spécification Dockerfile définit les instructions suivantes (parmi autres):
 
 Un Dockerfile est ensuite utilisé pour créer une image Docker. Le Dockerfile est passé
 à la commande `docker build`. La commande `docker build` construit l'image
-à partir du fichier Docker. La commande `docker build` prend le Dockerfile et le
-construire un contexte comme arguments.
+à partir du fichier Docker. La commande `docker build` prend le Dockerfile et 
+construit un contexte comme arguments.
 
-Une fois l'image créée, elle peut être exécutée avec la commande `docker run`. Le
+Une fois l'image créée, elle peut être exécutée avec la commande `docker run`. 
 La commande `docker run` prend le nom de l'image comme argument.
 
 La plupart des images Docker sont basées sur Linux mais d'autres sont également disponibles
@@ -167,30 +165,29 @@ documentation officielle : [ici](https://docs.docker.com/engine/reference/builde
 
 ### Considérations de sécurité
 
-Un conteneur est isolé du reste de l'ordinateur. Il est isolé de
-d'autres conteneurs. Il n'est pas isolé du démon Docker. Le Docker
-le démon a accès au conteneur.
+Un conteneur est isolé du reste de l'ordinateur. Il est isolé des
+autres conteneurs. Il n'est pas isolé du démon Docker. Le démon Docker 
+la accès au conteneur.
 
 Un conteneur n'est pas une machine virtuelle. Ce n'est pas un bac à sable. Ce n'est pas une sécurité
 frontière. Il ne s'agit pas d'une frontière de sécurité entre le conteneur et le
 Démon Docker.
+ 
+Le démon Docker s'exécute avec les privilèges root. Il faut être prudent quand un 
+conteneurs est en cours d’exécution. Une faille de sécurité dans un conteneur peut entraîner un
+compromis pour l'hôte. Essayez toujours d'exécuter des conteneurs avec un utilisateur non root.
 
-Le démon Docker s'exécute avec les privilèges root. Il faut être prudent quand
-conteneurs en cours d’exécution. Une faille de sécurité dans un conteneur peut entraîner une
-compromis de l'hôte. Essayez toujours d'exécuter des conteneurs avec un utilisateur non root.
-
-Il n'est pas toujours possible d'exécuter un conteneur avec un utilisateur non root. Quelques
-les conteneurs nécessitent les privilèges root pour s'exécuter. Certains conteneurs nécessitent un accès
+Il n'est pas toujours possible d'exécuter un conteneur avec un utilisateur non root. Quelques 
+conteneurs nécessitent les privilèges root pour s'exécuter. Certains conteneurs nécessitent un accès
 au démon Docker. Ceci est généralement explicitement indiqué dans la documentation
 du conteneur.
 
 ### Ignorer les fichiers
 
-Lors de la création d'une image, Docker enverra le contexte de construction au Docker
-démon.
+Lors de la création d'une image, Docker enverra le contexte de construction au démon Docker.
 
 Le contexte de build est le répertoire qui contient le Dockerfile. Ignorer
-fichiers qui ne sont pas nécessaires pour créer l'image, vous pouvez créer un `.dockerignore`
+les fichiers qui ne sont pas nécessaires pour créer l'image, vous pouvez créer un `.dockerignore`
 fichier dans le contexte de construction. Le fichier `.dockerignore` est similaire au fichier `.gitignore`.
 
 Cela peut être utile pour ignorer des fichiers tels que le répertoire `target` d'un Maven
@@ -236,14 +233,14 @@ docker image prune
 > Applications Docker.
 
 Docker Compose est un outil utilisé pour exécuter plusieurs conteneurs. C'est utilisé
-pour exécuter plusieurs conteneurs liés les uns aux autres. Il est utilisé pour courir
-plusieurs conteneurs faisant partie de la même application (un backend et son
+pour exécuter plusieurs conteneurs liés les uns aux autres. Il est utilisé pour faire marcher 
+plusieurs conteneurs faisant partie de la même application (un backend et ss 
 base de données par exemple).
 
 ### Spécification Docker Compose
 
 La spécification Docker Compose définit une norme pour définir et
-exécuter des applications Docker multi-conteneurs. La composition Docker
+exécuter des applications Docker multi-conteneurs. La composition Docker et 
 la spécification est implémentée par Docker, mais aussi par d'autres outils.
 
 La spécification Docker Compose définit les termes suivants (parmi autres):
@@ -309,8 +306,8 @@ Docker Desktop gère une machine virtuelle Linux. La machine virtuelle Linux
 exécute le démon Docker.
 
 Comme Docker Desktop utilise une machine virtuelle, certaines configurations (principalement
-réseau) peut être un peu différent de celui que vous pouvez trouver sur un Linux
-machine (poste de travail ou serveur).
+réseau) peut être un peu différent de celui que vous pouvez trouver sur une machine Linux 
+(poste de travail ou serveur).
 
 ## Docker Hub et GitHub Container Registry <a name="7"></a>
 
@@ -357,10 +354,10 @@ Si aucun contrôle de santé n'est défini, Docker utilisera le contrôle de san
 Le contrôle de santé par défaut consiste à vérifier si le conteneur est en cours d'exécution.
 
 Si aucun contrôle de santé n'est défini, le conteneur sera considéré comme sain car
-dès qu'il est en marche. Ce n'est pas toujours ce que vous souhaitez. Tu pourrais vouloir
-attendez que le conteneur soit prêt à accepter les demandes.
+il est normalement en marche. Ce n'est pas toujours ce que vous souhaitez. Vous pouvez avoir envie 
+d'attendre que le conteneur soit prêt à accepter les demandes.
 
-Vous pouvez définir un `healthcheck` directement dans le fichier Docker Compose avec le
+Vous pouvez définir un `healthcheck` directement dans le fichier Docker Compose avec l'
 option de contrôle de santé. Il vérifiera ensuite la santé du conteneur au démarrage.
 
 Par exemple, l'option suivante définit un contrôle de santé qui s'exécute tous les 30
@@ -397,8 +394,8 @@ Lorsque vous travaillez avec Docker, vous commencez généralement avec une imag
 3. Créez l'application.
 4. Exécuter.
 
-Ce processus crée une grande image. Il contient l'image de base, le
-les dépendances, le code source et les outils de build, même s'ils ne le sont pas
+Ce processus crée une grande image. Qui contient l'image de base, 
+les dépendances, le code source et les outils de build, même s'ils ne sont 
 plus nécessaire.
 
 Vous pouvez utiliser des constructions en plusieurs étapes pour réduire la taille de l'image finale. Le le processus serait le suivant :
@@ -419,14 +416,13 @@ de l'image.
 
 ### Constructions multi-architectures
 
-Par défaut, Docker utilisera l'architecture de votre ordinateur. Si vous êtes
-en utilisant un ordinateur avec une architecture `amd64`, Docker utilisera l'`amd64`
-version de l'image.
+Par défaut, Docker utilisera l'architecture de votre ordinateur. Si vous utilisé 
+un ordinateur avec une architecture `amd64`, Docker utilisera la version `amd64` de l'image.
 
 Vous pouvez utiliser des versions multi-architectures pour créer des images pour plusieurs
-architectures, telles que `amd64`, `arm64` et `armv7`. Vous pourrez ensuite publier le
-images sur un registre. Lorsque vous extrairez l'image, Docker le fera
-utiliser automatiquement la version qui correspond à l'architecture de votre
+architectures, telles que `amd64`, `arm64` et `armv7`. Vous pourrez ensuite publier les
+images sur un registre. Lorsque vous extrairez l'image, Docker 
+utilisera automatiquement la version qui correspond à l'architecture de votre
 ordinateur, rendant votre application compatible avec plusieurs architectures.
 
 
