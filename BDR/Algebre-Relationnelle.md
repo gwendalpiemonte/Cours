@@ -112,10 +112,10 @@ Exemple: Liste des réalisateurs en excluant ceux nés en 1943
 <img src="/BDR/images/exemple6.PNG" width="400"/>
 
 ## L’intersection
-L’intersection s’écrit: r  s
- Le résultat est une relation r' qui contiendra tous les tuples communs à r et s
- Les éventuels doublons sont supprimés
- r et s doivent être de même schéma
+L’intersection s’écrit: r $\cap$ s
+- Le résultat est une relation r' qui contiendra tous les tuples communs à r et s
+- Les éventuels doublons sont supprimés
+- r et s doivent être de même schéma
 
 Exemple: les films qui datent d’après 2001 et durent moins de 2h   
 
@@ -136,7 +136,7 @@ Cet opérateur est souvent nécessaire pour les opérateurs binaires nécessitan
 
 Exemple: Liste des cinémas (id) n’ayant aucune séance
 
-**$\pi$ id(Cinéma) $\/$ $\rho$ idCinéma $\to$ id ($\pi$ idCinéma (Séance))**
+**$\pi$ id(Cinéma) $\-$ $\rho$ idCinéma $\to$ id ($\pi$ idCinéma (Séance))**
 
 <img src="/BDR/images/exemple8.PNG" width="50"/>
 
@@ -149,7 +149,7 @@ Le produit cartésien s’écrit: **r $\times$ s**
 
 Exemple: 
 
-<img src="/BDR/images/exemple9.PNG" width="400"/>
+<img src="/BDR/images/exemple9.PNG" width="500"/>
 
 Le nombre de lignes du résultat vaut | r | * | s |
 (où | r | est le nombre de lignes de r)
