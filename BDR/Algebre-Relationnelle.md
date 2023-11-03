@@ -1,6 +1,27 @@
 # Algèbre relationnelle
 
-## Introduction
+# Table des matières:
+1. [Introduction](#1)
+2. [Les opérateurs](#2)
+3. [La sélection](#3)
+4. [La projection](#4)
+5. [Requêtes avec plusieurs opérateurs](#19)
+6. [L’union](#5)
+7. [La différence](#6)
+8. [L’intersection](#7)
+9. [Opérateur de renommage](#8)
+10. [Le produit cartésien](#9)
+11. [La jointure](#10)
+12. [La jointure naturelle](#11)
+13. [La sélection généralisée](#12)
+14. [Quantification universelle](#13)
+15. [Requêtes sur plusieurs relations](#14)
+16. [Complémentarité d’un ensemble](#15)
+17. [La division](#16)
+18. [Écriture de requêtes](#17)
+19. [Possibilités des opérateurs algébriques vus](#18)
+
+## Introduction <a name="1"></a>
 L’algèbre relationnelle a été initialement proposée par Codd (1970)
 
 C’est un langage formel qui fait intervenir 5 opérateurs
@@ -16,7 +37,7 @@ la suite en utilisant la relation de sortie en entrée de l’opérateur suivant
 Le SQL (Structured Query Language) est une implémentation
 informatique de l’algèbre relationnelle
 
-## Les opérateurs
+## Les opérateurs <a name="2"></a>
 En algèbre relationnelle il y a 5 opérateurs fondamentaux:
 |Operateur|symbole|Type|
 |-----|-----|-----|
@@ -34,7 +55,7 @@ Les autres sont la **division** ($\/$) et **l’intersection** ($\cap$)
 
 Certaines requêtes, selon les noms des attributs impliqués, peuvent nécessiter l'utilisation de l’opérateur de **renommage** ($\rho$)
 
-## La sélection
+## La sélection <a name="3"></a>
 La sélection s’écrit: $\sigma$ c(r)
 - r est la relation de schéma R sur laquelle s’applique la sélection
 - c est le critère de sélection qui est une expression booléenne
@@ -50,7 +71,7 @@ Exemple: Liste des réalisateurs nés après 1970
 
 <img src="/BDR/images/exemple1.PNG" width="400"/>
 
-## La projection
+## La projection <a name="4"></a>
 La projection s’écrit: $\pi$ s(r)
 - r est la relation de schéma R, projetée sur S $\subseteq$ R
 - Le résultat est une relation r' de schéma S qui ne conserve que les attributs de S
@@ -75,7 +96,7 @@ Cette fois le résultat ne contient que **6 réalisateurs (au lieu de 7)**
 - Il faut donc **faire attention lorsque les attributs de la projection ne contiennent pas une clé de la relation initiale**
 - Le but d’une projection est, la plupart du temps, de retourner le même nombre de lignes que la relation initiale
 
-### Requêtes avec plusieurs opérateurs
+## Requêtes avec plusieurs opérateurs <a name="19"></a>
 Par combinaison des 2 requêtes précédentes, on peut obtenir le
 nom, prénom et l’année de naissance des réalisateurs nés après 1970:   
 
@@ -85,7 +106,7 @@ nom, prénom et l’année de naissance des réalisateurs nés après 1970:
 
 Les requêtes n’utilisant qu’un opérateur sont rares
 
-## L’union
+## L’union <a name="5"></a>
 L’union s’écrit: r $\cup$ s
 - Le résultat est une relation r' qui contiendra tous les tuples qui sont dans r et tous ceux qui sont dans s
 - Les éventuels **doublons sont supprimés**
@@ -97,7 +118,7 @@ Exemple: Liste des réalisateurs nés après 1970 ou avant 1950
 
 <img src="/BDR/images/exemple5.PNG" width="400"/>
 
-## La différence
+## La différence <a name="6"></a>
 La différence s’écrit: r $\-$ s
 - Le résultat est une relation r' qui contiendra tous les tuples de r qui n’existent pas dans s
 - Les éventuels **doublons sont supprimés**
@@ -111,7 +132,7 @@ Exemple: Liste des réalisateurs en excluant ceux nés en 1943
 
 <img src="/BDR/images/exemple6.PNG" width="400"/>
 
-## L’intersection
+## L’intersection <a name="7"></a>
 L’intersection s’écrit: r $\cap$ s
 - Le résultat est une relation r' qui contiendra tous les tuples communs à r et s
 - Les éventuels doublons sont supprimés
@@ -127,7 +148,7 @@ L’intersection a l’équivalence suivante:
 **r $\-$ (r $\-$ s)**
 **$\sigma$ année > 2001 (Film) – ($\sigma$ année > 2001 (Film) $\-$ durée < 120 (Film))**
 
-## Opérateur de renommage
+## Opérateur de renommage <a name="8"></a>
 L’opérateur de renommage s’écrit: **$\rho$ A $\to$ B (r) ou $\rho$ B/A (r)**
 - Le résultat est une relation r' qui contiendra tous les tuples de r mais en **renommant l’attribut A en B**
 - Il existe une notation abrégée qui permet de ne spécifier que les nouveaux noms des attributs: $\rho$ (B, C,..) (r) Cette notation impose de renommer **tous les attributs** de r
@@ -143,7 +164,7 @@ Exemple: Liste des cinémas (id) n’ayant aucune séance
 Il est aussi possible de renommer la relation:
 Exemple de renommage de la relation r en s: **$\rho$ s (r)**
 
-## Le produit cartésien
+## Le produit cartésien <a name="9"></a>
 Le produit cartésien s’écrit: **r $\times$ s**
 - Le résultat est une relation r' où **chaque tuple de r est associé à chaque tuple de s**
 
@@ -160,7 +181,7 @@ Le produit cartésien est, en lui-même, **rarement utile** car il combine "aveu
 
 - Le produit cartésien est utile lorsqu’il est associé à l’opérateur de sélection afin de faire une **jointure**
 
-## La jointure
+## La jointure <a name="10"></a>
 Le jointure s’obtient par **composition d’un produit cartésien et d’une sélection**
 
 Exemple: Les cinémas et **leurs** salles (et non pas les cinémas et toutes les salles comme dans l’exemple du seul produit cartésien)   
@@ -183,7 +204,7 @@ Quand le critère de rapprochement est une égalité, la jointure s’appelle un
 
 **La jointure est utilisée quand les attributs nécessaires à une requêtes proviennent de plusieurs relations**
 
-## La jointure naturelle
+## La jointure naturelle <a name="11"></a>
 **Si aucun critère de rapprochement** n’est précisé, la jointure est une équi-jointure qui se fait sur **tous les attributs qui ont le même nom dans les deux relations**
 
 En prenant les 2 relations suivantes:
@@ -197,7 +218,7 @@ La requête **Film $\otimes$ Réalisateur** donne comme résultat :
 
 À noter qu’une seule occurrence de chaque attribut de même nom (ici idRéalisateur) est gardée dans le résultat
 
-## La sélection généralisée
+## La sélection généralisée <a name="12"></a>
 Une sélection peut se faire sur **plus d’un critère**
 
 Exemple: les films qui datent d’après 2001 **et** durent moins de 2h
@@ -241,14 +262,14 @@ Il faut noter que ces équivalences sont toujours vraies seulement si elles ne c
 
 $\neg$ est l’opérateur de négation booléenne (NOT)
 
-## Quantification universelle
+## Quantification universelle <a name="13"></a>
 
-## Requêtes sur plusieurs relations
+## Requêtes sur plusieurs relations <a name="14"></a>
 
-## Complémentarité d’un ensemble
+## Complémentarité d’un ensemble <a name="15"></a>
 
-## La division
+## La division <a name="16"></a>
 
-## Écriture de requêtes
+## Écriture de requêtes <a name="17"></a>
 
-## Possibilités des opérateurs algébriques vus
+## Possibilités des opérateurs algébriques vus <a name="18"></a>
