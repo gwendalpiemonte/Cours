@@ -11,8 +11,7 @@ Chaque opérateur prend en entrée une (opérateur unaire) ou deux
 Il est donc possible de composer des opérateurs (en appliquer plusieurs à
 la suite en utilisant la relation de sortie en entrée de l’opérateur suivant)
 
-**Le but est d’exprimer des requêtes afin d’extraire de l’information d’un
-ensemble de relations**
+**Le but est d’exprimer des requêtes afin d’extraire de l’information d’un ensemble de relations**
 
 Le SQL (Structured Query Language) est une implémentation
 informatique de l’algèbre relationnelle
@@ -36,7 +35,7 @@ Les autres sont la **division** ($\/$) et **l’intersection** ($\cap$)
 Certaines requêtes, selon les noms des attributs impliqués, peuvent nécessiter l'utilisation de l’opérateur de **renommage** ($\rho$)
 
 ## La sélection
-La sélection s’écrit: $\sigma$c(r)
+La sélection s’écrit: $\sigma$ c(r)
 - r est la relation de schéma R sur laquelle s’applique la sélection
 - c est le critère de sélection qui est une expression booléenne
 - Le résultat est une relation r' qui contiendra tous les tuples de r qui satisfont au critère c
@@ -45,23 +44,29 @@ Le critère c peut comparer un attribut A $\in$ R avec:
 - Une constante a A $\theta$ a où $\theta$ $\in$ {=, $\not=$, >, <, $\ge$, $\le$}
 - Un autre attribut de r A1 $\theta$ A2 où $\theta$ $\in$ {=, $\not=$, >, <, $\ge$, $\le$}
 
-Exemple: Liste des réalisateurs nés après 1970
-**$\sigma$annéeNaissance > 1970(Réalisateur)**
+Exemple: Liste des réalisateurs nés après 1970   
+
+**$\sigma$ annéeNaissance > 1970(Réalisateur)**
+
 <img src="/BDR/images/exemple1.PNG" width="400"/>
 
 ## La projection
-La projection s’écrit: $\pi$s(r)
-- r est la relation de schéma R, projetée sur S $\sube$ R
+La projection s’écrit: $\pi$ s(r)
+- r est la relation de schéma R, projetée sur S $\subseteq$ R
 - Le résultat est une relation r' de schéma S qui ne conserve que les attributs de S
 - Les éventuels doublons sont supprimés
 
-Exemple: Liste du nom, du prénom et de l’année de naissance des réalisateurs
-**$\pi$nom, prénom, annéeNaissance (Réalisateur)**
+Exemple: Liste du nom, du prénom et de l’année de naissance des réalisateurs   
+
+**$\pi$ nom, prénom, annéeNaissance (Réalisateur)**
+
 <img src="/BDR/images/exemple2.PNG" width="400"/>
 
 ### Doublons
-Exemple: Liste des noms des réalisateurs
-**$\pi$nom (Réalisateur)**
+Exemple: Liste des noms des réalisateurs   
+
+**$\pi$ nom (Réalisateur)**
+
 <img src="/BDR/images/exemple3.PNG" width="400"/>
 
 Cette fois le résultat ne contient que **6 réalisateurs (au lieu de 7)**
@@ -72,9 +77,10 @@ Cette fois le résultat ne contient que **6 réalisateurs (au lieu de 7)**
 
 ### Requêtes avec plusieurs opérateurs
 Par combinaison des 2 requêtes précédentes, on peut obtenir le
-nom, prénom et l’année de naissance des réalisateurs nés après
-1970:
-**$\pi$nom, prénom, annéeNaissance ($\sigma$annéeNaissance > 1970 (Réalisateur))**
+nom, prénom et l’année de naissance des réalisateurs nés après 1970:   
+
+**$\pi$ nom, prénom, annéeNaissance ($\sigma$ annéeNaissance > 1970 (Réalisateur))**
+
 <img src="/BDR/images/exemple4.PNG" width="400"/>
 
 Les requêtes n’utilisant qu’un opérateur sont rares
