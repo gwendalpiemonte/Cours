@@ -128,7 +128,7 @@ L’intersection a l’équivalence suivante:
 **$\sigma$ année > 2001 (Film) – ($\sigma$ année > 2001 (Film) $\-$ durée < 120 (Film))**
 
 ## Opérateur de renommage
-L’opérateur de renommage s’écrit: **$\rho$ A $\rarr$ B (r) ou $\rho$ B/A (r)**
+L’opérateur de renommage s’écrit: **$\rho$ A $\to$ B (r) ou $\rho$ B/A (r)**
 - Le résultat est une relation r' qui contiendra tous les tuples de r mais en **renommant l’attribut A en B**
 - Il existe une notation abrégée qui permet de ne spécifier que les nouveaux noms des attributs: $\rho$ (B, C,..) (r) Cette notation impose de renommer **tous les attributs** de r
 
@@ -136,9 +136,9 @@ Cet opérateur est souvent nécessaire pour les opérateurs binaires nécessitan
 
 Exemple: Liste des cinémas (id) n’ayant aucune séance
 
-**id(Cinéma)  idCinéma  id (idCinéma (Séance))**
+**$\pi$ id(Cinéma) $\/$ $\rho$ idCinéma $\to$ id ($\pi$ idCinéma (Séance))**
 
-<img src="/BDR/images/exemple8.PNG" width="200"/>
+<img src="/BDR/images/exemple8.PNG" width="50"/>
 
 Il est aussi possible de renommer la relation:
 Exemple de renommage de la relation r en s: **$\rho$ s (r)**
@@ -154,10 +154,9 @@ Exemple:
 Le nombre de lignes du résultat vaut | r | * | s |
 (où | r | est le nombre de lignes de r)
 
- Le produit cartésien est, en lui-même, **rarement utile** car il combine "aveuglément" les tuples
+Le produit cartésien est, en lui-même, **rarement utile** car il combine "aveuglément" les tuples
 - Dans l’exemple précédent chaque salle est associée à chaque cinéma, ce qui ne représente pas d’information pertinente
-- Il y a donc beaucoup de **tuples inutiles**, les seuls pertinents sont ceux
-liant chaque salle à son cinéma
+- Il y a donc beaucoup de **tuples inutiles**, les seuls pertinents sont ceux liant chaque salle à son cinéma
 
 - Le produit cartésien est utile lorsqu’il est associé à l’opérateur de sélection afin de faire une **jointure**
 
@@ -168,7 +167,7 @@ Exemple: Les cinémas et **leurs** salles (et non pas les cinémas et toutes les
 
 $\sigma$ Salle.idCinéma = Cinéma.id (Cinéma $\times$ Salle)
 
-<img src="/BDR/images/exemple10.PNG" width="400"/>
+<img src="/BDR/images/exemple10.PNG" width="500"/>
 
 Tous les tuples du résultat sont cette fois utiles car ils représentent une **information pertinente**
 
@@ -194,7 +193,7 @@ Film(titre, idRéalisateur, durée, année)
 
 La requête **Film $\otimes$ Réalisateur** donne comme résultat :
 
-<img src="/BDR/images/exemple11.PNG" width="400"/>
+<img src="/BDR/images/exemple11.PNG" width="500"/>
 
 À noter qu’une seule occurrence de chaque attribut de même nom (ici idRéalisateur) est gardée dans le résultat
 
