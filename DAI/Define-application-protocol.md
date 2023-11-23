@@ -8,7 +8,7 @@ protocole d'application.
 Un protocole d'application est un document utilisé pour définir comment
 les applications échangent des informations entre elles (généralement entre un
 client et un serveur). Elle est définie par un ensemble de règles que chaque partie doit
-suivre pour communiquer.
+suivre pour communiquer.  
 
 Dans ce chapitre, vous apprendrez où trouver des informations sur l'application
 protocoles, comment est défini un protocole d'application et comment définir votre
