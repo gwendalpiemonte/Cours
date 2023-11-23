@@ -5,7 +5,7 @@
 Ce chapitre vous aidera à comprendre comment comprendre et définir un
 protocole d'application.
 
-Un protocole d'application est un document utilisé pour définir comment
+Un protocole d'application est un document utilisé pour définir comment 
 les applications échangent des informations entre elles (généralement entre un
 client et un serveur). Elle est définie par un ensemble de règles que chaque partie doit
 suivre pour communiquer.  
