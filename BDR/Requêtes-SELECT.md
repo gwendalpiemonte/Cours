@@ -44,12 +44,79 @@ WHERE lower(titre) SIMILAR TO '[a-c]%';
 ```
 
 ## BETWEEN
+Une condition sur un intervalle de valeurs s’écrit: datatype `BETWEEN` datatype `AND` datatype → boolean
+
+Exemple: Liste des films qui durent entre 120 et 150 minutes
+```sql
+SELECT *
+FROM Film
+WHERE durée BETWEEN 120 AND 150;
+```
+Cette requête est équivalente à:
+```sql
+SELECT *
+FROM Film
+WHERE durée >= 120 AND durée <= 150;
+```
 
 ## ORDER BY
+Pour trier les résultats d’une requête, selon un ou plusieurs critères, il faut utiliser la clause `ORDER BY`:   
+`ORDER BY` sort_expression1 [ASC | DESC] `ASC` pour un tri par ordre croissant (valeur par défaut)   
+   
+Exemple: Liste des films par ordre décroissant de leur durée, puis par ordre croissant de leur année
+```sql
+SELECT *
+FROM Film
+ORDER BY durée DESC, année; -- ou année ASC
+```
 
 ## Jointures
 
 ## Alias
+Il peut aussi y avoir des ambiguïtés sur les résultats.   
+   
+Exemple: Liste de noms des cinémas qui … et des réalisateurs
+```sql
+SELECT
+Cinéma.nom, Réalisateur.nom
+FROM
+Cinéma INNER JOIN ... INNER JOIN Réalisateur...;
+```
+Cette requête est valide mais le résultat n’est pas parlant.   
+Dans ce genre de cas il faut renommer le nom des attributs du résultat.   
+   
+Exemple précédent **avec renommage des attributs** du résultat:
+```sql
+SELECT
+Cinéma.nom [AS] cinéma,
+Réalisateur.nom [AS] réalisateur
+FROM
+Cinéma INNER JOIN ... INNER JOIN Réalisateur...;
+```
+Bien que le mot-clé AS soit facultatif, il est recommandé de le mettre pour une question de lisibilité.
+
+Parfois un résultat n’a pas de nom implicite, la colonne de résultat sera nommée ?column?   
+   
+Exemple: Titre des films et indication s’ils durent plus de 2h
+```sql
+SELECT
+titre, durée > 120
+FROM
+Film;
+```
+Dans ce genre de cas, il faut aussi utiliser un alias  
+
+Un alias peut être réutilisé dans la requête, notamment dans la clause `ORDER BY`.   
+   
+Requête précédente avec alias et tri:
+```sql
+SELECT
+titre, durée > 120 AS "film de plus de 2h"
+FROM
+Film
+ORDER BY
+"film de plus de 2h" DESC;
+```
 
 ## IS [NOT] NULL
 
