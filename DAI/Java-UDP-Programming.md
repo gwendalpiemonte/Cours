@@ -139,16 +139,87 @@ Si vous souhaitez envoyer une diffusion à tous les appareils sur tous les sous-
 > **Attention**  
 > Vous devez être conscient qu'il peut y avoir des restrictions quant à l'utilisation de la diffusion. Par exemple, la diffusion est limitée au réseau local mais peut tout de même être bloquée par un pare-feu et/ou un routeur.
 
-### Multicast
+### Multidiffusion
 
-Le multicast est une communication de un à plusieurs. Cela signifie qu'un datagramme est envoyé d'un hôte à plusieurs hôtes.
+La multidiffusion est une communication de type un-vers-plusieurs. Cela signifie qu'un datagramme est envoyé d'un hôte à plusieurs hôtes.
 
-Pensez-y comme une conversation de groupe.
+On peut le comparer à une conversation de groupe.
 
-Pour envoyer un datagramme de multidiffusion, l'expéditeur utilise une adresse de multidiffusion. L'adresse de multidiffusion est une adresse spéciale qui représente un groupe d'hôtes sur le réseau. Pensez-y comme une chaîne de radio ou un canal Discord : tout le monde sur le canal recevra les messages envoyés dans ce canal.
+Pour envoyer un datagramme en multidiffusion, l'émetteur utilise une adresse de multidiffusion. L'adresse de multidiffusion est une adresse spéciale qui représente un groupe d'hôtes sur le réseau. On peut la comparer à une chaîne radio ou à un salon Discord : tout le monde sur la chaîne recevra les messages envoyés dans ce salon particulier.
 
-Les adresses de multidiffusion sont des adresses IP spécifiques dans la plage de `224.0.0.0` à `239.255.255.255` pour IPv4 et `f00::/8` pour IPv6.
+Les adresses de multidiffusion sont des adresses IP spécifiques dans la plage allant de `224.0.0.0` à `239.255.255.255` pour IPv4 et `f00::/8` pour IPv6.
 
-Tout comme pour les ports, certaines adresses de multidiffusion sont réservées à des fins spécifiques. Une liste complète est disponible sur le site de [l'IANA](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xhtml) et est décrite plus en détail dans le [RFC 5771](https://datatracker.ietf.org/doc/html/rfc5771).
+Tout comme pour les ports, certaines adresses de multidiffusion sont réservées à des fins spécifiques. Une liste complète est disponible sur le [site de l'IANA](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xhtml) et décrite plus en détail dans le [RFC 5771](https://datatracker.ietf.org/doc/html/rfc5771).
 
-Pour les réseaux locaux, la plage de multidiffusion va du **bloc administrativ
+Pour les réseaux locaux, la plage de multidiffusion est issue du **Bloc à Portée Administrative** du RFC. Plus de détails sont disponibles dans le [RFC 2365](https://datatracker.ietf.org/doc/html/rfc2365).
+
+Toutes les adresses de multidiffusion dans la plage `239.0.0.0` à `239.255.255.255` peuvent être utilisées pour vos propres applications.
+
+Tout comme pour la diffusion, l'émetteur doit connaître l'adresse de multidiffusion pour envoyer un datagramme à un groupe de multidiffusion. Tout comme pour la diffusion également, il peut y avoir des restrictions quant à l'utilisation de la multidiffusion.
+
+La multidiffusion est pratiquement **impossible** à utiliser sur Internet public. Elle est seulement garantie de fonctionner sur un réseau local. Si vous avez besoin d'utiliser la multidiffusion entre plusieurs réseaux, vous devez utiliser un tunnel tel qu'un réseau privé virtuel (VPN) pour contourner cette restriction.
+
+La multidiffusion est présentée dans ce cours car c'est un concept important dans les protocoles de découverte de services. Cependant, vous devez savoir qu'il est pratiquement impossible d'utiliser la multidiffusion sur Internet public, ce qui limite grandement son utilisation.
+
+De plus, la multidiffusion est un sujet complexe. Elle n'est pas abordée en profondeur dans ce cours. Pour une meilleure compréhension des utilisations possibles de la multidiffusion sur Internet, vous pouvez consulter les ressources suivantes :
+
+- [Multidiffusion IP](https://fr.wikipedia.org/wiki/Multicast_IP)
+- [Protocole de gestion de groupe Internet](https://fr.wikipedia.org/wiki/Internet_Group_Management_Protocol)
+- [Télévision par protocole Internet](https://fr.wikipedia.org/wiki/T%C3%A9l%C3%A9vision_par_protocole_Internet)
+
+## Schémas de messagerie
+
+Comme UDP ne fournit pas de mécanisme de connexion, il appartient à l'application de définir le schéma de messagerie (comment envoyer et recevoir des données).
+
+Il existe deux schémas de messagerie courants : le mode envoyer-et-oublier (fire-and-forget) et la requête-réponse.
+
+Le mode envoyer-et-oublier est le schéma de messagerie le plus simple. C'est une communication à sens unique. Cela signifie qu'un datagramme est envoyé d'un hôte à un autre sans attendre de réponse.
+
+Le mode envoyer-et-oublier est utilisé lorsque l'émetteur n'a pas besoin de savoir si le datagramme a été reçu ou non.
+
+Le schéma de requête-réponse (parfois appelé requête-réponse) est une communication bidirectionnelle. Cela signifie qu'un datagramme est envoyé d'un hôte à un autre, et une réponse est attendue.
+
+Lors de la création d'un datagramme, il est possible de spécifier un port. Bien que cela ne soit pas obligatoire, ce port peut être utilisé par le récepteur pour savoir à qui répondre.
+
+Si aucun port n'est spécifié, le système d'exploitation attribuera simplement un port aléatoire au datagramme sortant.
+
+Le destinataire du datagramme peut alors extraire l'adresse IP et le port de l'expéditeur et les utiliser pour répondre à l'expéditeur en utilisant unicast.
+
+Le schéma de requête-réponse peut être utilisé lorsque l'émetteur a besoin de savoir si le datagramme a été reçu ou non.
+
+Les deux côtés de la communication peuvent envoyer une requête et recevoir une réponse.
+
+## Protocoles de découverte de services
+
+Avec unicast, l'émetteur doit connaître le destinataire ; l'émetteur doit connaître l'adresse IP du destinataire.
+
+Avec la diffusion (broadcast) et la multidiffusion (multicast), l'émetteur n'a pas besoin de connaître les destinataires ; l'émetteur n'a pas besoin de connaître l'adresse IP des destinataires. L'émetteur sait que les nœuds à proximité (ou ceux qui ont exprimé un intérêt pour la diffusion) recevront le datagramme.
+
+En utilisant cette propriété, il est possible de créer des protocoles de découverte de services.
+
+Les protocoles de découverte de services sont utilisés pour découvrir des services sur le réseau. Ils sont utilisés pour trouver des services sans connaître leur adresse IP.
+
+Il existe deux types de protocoles de découverte de services : passifs et actifs.
+
+Les protocoles de découverte de services passifs sont basés sur la diffusion ou la multidiffusion. Ils sont utilisés pour annoncer la présence d'un service sur le réseau.
+
+Les protocoles de découverte de services actifs sont également basés sur la diffusion ou la multidiffusion mais passent ensuite à unicast. Ils sont utilisés pour interroger le réseau afin de trouver un service.
+
+Il existe de nombreux schémas de protocoles de découverte de services. Les plus courants sont les suivants :
+
+- Publicité - Un schéma de protocole de découverte passif : un serveur (appelé fournisseur de services) annonce sa présence sur le réseau. Le fournisseur de services envoie un datagramme de diffusion ou de multidiffusion pour annoncer sa présence. Le datagramme contient des informations sur le service (nom, adresse IP, port, etc.). Le datagramme est envoyé périodiquement pour annoncer que le service est toujours disponible.
+
+  Les clients (appelés consommateurs de services) écoutent les datagrammes de diffusion ou de multidiffusion pour découvrir les services sur le réseau.
+
+  Si un consommateur de services est intéressé par l'annonce du fournisseur de services, il peut manifester son intérêt.
+
+  ![Protocoles de découverte de services - Schéma de publicité](images/service-discovery-protocols-advertisement.png)
+
+- Requête - Un schéma de protocole de découverte actif : un client (appelé consommateur de services) interroge le réseau pour trouver un service. Le client envoie un datagramme unicast sur le réseau pour demander des informations sur un service.
+
+  Si un service qui fournit le service demandé (appelé fournisseur de services) est disponible, il répond avec un datagramme unicast contenant les informations demandées pour se connecter au service, tout comme avec le schéma de messagerie requête-réponse.
+
+  ![Protocoles de découverte de services - Schéma de requête](images/service-discovery-protocols-query.png)
+
+Ces schémas peuvent encore être utilisés avec d'autres protocoles tels que TCP.
+
