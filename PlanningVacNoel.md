@@ -26,12 +26,12 @@
 - **Faire le TP5**   
   _15.01.2024 Lundi_
 - **Préparer le dernier test**   
-  _11.01.2024 Jeudi
+  _11.01.2024 Jeudi_
 - **Se mettre à jour se le cours**
 
 ## SYL
 - **Préparer le dernier test**   
-  _11.01.2024 Jeudi
+  _11.01.2024 Jeudi_
 - **Se mettre à jour se le cours**   
 - **Faire des exercices**
 - Un tutorat est proposé le mardi 9 janvier 2023 à 12h dans la salle A09
