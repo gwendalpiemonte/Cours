@@ -32,6 +32,6 @@
 ## SYL
 - **Préparer le dernier test**
   _11.01.2024 Jeudi
-- **Se mettre à jour se le cours**¨
+- **Se mettre à jour se le cours**
 - **Faire des exercices**
 - Un tutorat est proposé le mardi 9 janvier 2023 à 12h dans la salle A09
